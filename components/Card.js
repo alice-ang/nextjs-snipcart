@@ -27,13 +27,7 @@ export const Card = ({
   return (
     <CardContainer>
       <Link href="/product/[slug]" as={`/product/${url.current}`}>
-        <Image
-          src={urlFor(image).url()}
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="cover"
-        />
+        <Image src={urlFor(image).url()} layout="fill" objectFit="cover" />
       </Link>
       <CardContent>
         <h3>{itemName}</h3>

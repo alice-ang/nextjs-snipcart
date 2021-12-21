@@ -11,7 +11,6 @@ const StyledHeader = styled.header({
   paddingBottom: 20,
   alignItems: "center",
   justifyContent: "space-around",
-  background: "white",
 });
 
 const Items = styled.ul(({ isMobile }) => ({
@@ -68,7 +67,7 @@ export default function Header() {
         {/* <Items>
         {menuItems.map((item) => {
           return (
-            <li  onClick={() => setToggle(!toggle)}>
+            <li>
               <Link href={item.url}>{item.name}</Link>
             </li>
           );

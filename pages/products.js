@@ -2,8 +2,6 @@ import styled from "styled-components";
 import groq from "groq";
 import client from "../client";
 import { Card } from "../components/Card";
-import { variables } from "../utils";
-import { Breakpoints } from "../styles/styles";
 
 const ProductGrid = styled.div({
   display: "grid",
