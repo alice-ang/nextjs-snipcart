@@ -39,7 +39,6 @@ export default function Product(props) {
 }
 const query = groq`*[_type == "product" && slug.current == $slug][0]{
   title,
-  slug,
   "categories": categories[]->title,
   mainImage,
   description

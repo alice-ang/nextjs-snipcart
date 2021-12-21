@@ -6,17 +6,11 @@ import { variables } from "../utils";
 import { Breakpoints } from "../styles/styles";
 
 const ProductGrid = styled.div({
-  background: "blue",
   display: "grid",
-  gridTemplateColumns: `repeat(auto-fill, minmax(${variables.ProductSize}px, 1fr))`,
-  gridGap: "3em",
-  padding: 0,
+  gridTemplateColumns: `repeat(auto-fill, minmax(100px, 1fr))`,
+  gridGap: "1em",
+  padding: "1em",
   margin: 0,
-  [Breakpoints.LaptopOrLarger]: {
-    display: "grid",
-    gridTemplateColumns: `repeat(auto-fill, minmax(${variables.ProductSize}px, 1fr))`,
-    gridGap: "1em",
-  },
 });
 
 export default function Products(props) {
@@ -26,14 +20,22 @@ export default function Products(props) {
       <h1>Products </h1>
       <ProductGrid>
         {products.map(
-          ({ _id, title = "", slug = "", mainImage, price, currency, body }) =>
+          ({
+            _id,
+            title = "",
+            slug = "",
+            mainImage,
+            price,
+            currency,
+            description,
+          }) =>
             slug && (
               <Card
                 key={_id}
                 itemName={title}
                 url={`/products/${slug}`}
                 image={mainImage}
-                description={body}
+                description={description}
                 id={slug}
                 price={price}
                 currency={currency}

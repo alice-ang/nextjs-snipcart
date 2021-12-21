@@ -1,17 +1,13 @@
 import { ProductList } from "../components/ProductList";
 import groq from "groq";
 import { client } from "../client";
+import { Hero } from "../components/Hero";
 
-export default function Home(props) {
+export default function Home() {
   return (
-    <>
-      <ProductList products={props.products} />
-    </>
+    <div>
+      <Hero />
+      home
+    </div>
   );
 }
-
-Home.getInitialProps = async () => ({
-  products: await client.fetch(groq`
-    *[_type == "product"]
-  `),
-});

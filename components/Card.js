@@ -3,11 +3,16 @@ import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
+import { BuyButton } from "./BuyButton";
 
 const CardContainer = styled.div({
   display: "inline-flex",
   flexDirection: "column",
-  background: "red",
+  background: "f0f5f6",
+});
+
+const CardContent = styled.div({
+  padding: "1em",
 });
 
 export const Card = ({
@@ -30,20 +35,22 @@ export const Card = ({
           objectFit="cover"
         />
       </Link>
+      <CardContent>
+        <h3>{itemName}</h3>
 
-      {price && formatCurrency(currency, "sv-SE").format(price)}
-      <p>{itemName}</p>
-      <button
-        className="snipcart-add-item"
-        data-item-id={id}
-        data-item-price={price}
-        data-item-url={url}
-        data-item-description={description}
-        data-item-image={image}
-        data-item-name={itemName}
+        {price && formatCurrency(currency, "sv-SE").format(price)}
+      </CardContent>
+
+      <BuyButton
+        id={id}
+        price={price}
+        url={url}
+        description={description}
+        image={urlFor(image).url()}
+        itemName={itemName}
       >
-        Add to cart
-      </button>
+        Köp
+      </BuyButton>
     </CardContainer>
   );
 };

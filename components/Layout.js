@@ -1,12 +1,12 @@
 import Head from "next/head";
 import styled from "styled-components";
 import { Breakpoints } from "../styles/styles";
-
+import Header from "../components/Header";
 const LayoutContainer = styled.div({
-  [Breakpoints.LaptopOrLarger]: {
-    width: "80%",
-    margin: "0 auto",
-  },
+  // [Breakpoints.BigScreenOrLarger]: {
+  //   width: "80%",
+  //   margin: "0 auto",
+  // },
 });
 
 export default function Layout({ children }) {
@@ -23,6 +23,7 @@ export default function Layout({ children }) {
 
         <link rel="shortcut icon" href="../public/favicon.ico" />
       </Head>
+      <Header />
       <main>{children}</main>
       <script
         async
