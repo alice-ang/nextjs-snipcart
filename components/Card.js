@@ -4,15 +4,23 @@ import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
 import { BuyButton } from "./BuyButton";
+import { theme } from "../styles/styles";
 
 const CardContainer = styled.div({
   display: "inline-flex",
   flexDirection: "column",
   background: "f0f5f6",
+  h3: {
+    margin: 0,
+  },
 });
 
 const CardContent = styled.div({
   padding: "1em",
+});
+
+const Divider = styled.hr({
+  borderTop: `2px solid ${theme.colors.divider}`,
 });
 
 export const Card = ({
@@ -27,24 +35,19 @@ export const Card = ({
   return (
     <CardContainer>
       <Link href="/product/[slug]" as={`/product/${url.current}`}>
-        <Image src={urlFor(image).url()} layout="fill" objectFit="cover" />
+        <Image
+          src={urlFor(image).url()}
+          width="100%"
+          height="100%"
+          layout="responsive"
+          objectFit="cover"
+        />
       </Link>
       <CardContent>
         <h3>{itemName}</h3>
-
+        <Divider />
         {price && formatCurrency(currency, "sv-SE").format(price)}
       </CardContent>
-
-      <BuyButton
-        id={id}
-        price={price}
-        url={url}
-        description={description}
-        image={urlFor(image).url()}
-        itemName={itemName}
-      >
-        Köp
-      </BuyButton>
     </CardContainer>
   );
 };

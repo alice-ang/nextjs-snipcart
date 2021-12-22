@@ -22,9 +22,7 @@ export const Product = ({ product }) => {
       {product.mainImage && (
         <Image
           src={urlFor(product.mainImage).url()}
-          width="100%"
-          height="100%"
-          layout="responsive"
+          layout="fill"
           objectFit="cover"
         />
       )}

@@ -46,6 +46,7 @@ const MobileHeader = styled.div(({ isOpen }) => ({
   overflowX: "hidden",
   transition: "0.5s",
   paddingTop: 60,
+  zIndex: 10,
 }));
 
 const CloseButton = styled(ImCross)({
@@ -90,7 +91,6 @@ export default function Header() {
               fill="#9094FF"
             />
           </svg>
-          <span className="snipcart-total-price"></span>
         </a>
         {toggle && (
           <MobileHeader isOpen={toggle}>

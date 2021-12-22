@@ -9,7 +9,7 @@ const HeroContainer = styled.div({
   height: "40vh",
 });
 
-const HeroText = styled.h1({
+const HeroText = styled.div({
   opacity: 1,
   width: "100%",
   color: "white",
@@ -19,6 +19,9 @@ const HeroText = styled.h1({
   left: "50%",
   transform: "translate(-50%, -50%)",
   zIndex: 4,
+  h1: {
+    margin: 0,
+  },
 });
 
 const Overlay = styled.div({
