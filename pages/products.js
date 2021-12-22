@@ -40,7 +40,7 @@ export default function Products(props) {
                 <Card
                   key={_id}
                   itemName={title}
-                  url={`/products/${slug}`}
+                  url={props.path}
                   image={mainImage}
                   description={description}
                   id={slug}
