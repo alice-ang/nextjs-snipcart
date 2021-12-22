@@ -3,47 +3,47 @@ import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
+import { BuyButton } from "./BuyButton";
+import { theme } from "../styles/styles";
+import { Product } from "./Product";
 
 const CardContainer = styled.div({
   display: "inline-flex",
   flexDirection: "column",
-  background: "red",
+  background: "f0f5f6",
+  h3: {
+    margin: 0,
+  },
 });
 
-export const Card = ({
-  id,
-  price,
-  currency,
-  url,
-  description,
-  image,
-  itemName,
-}) => {
+const CardContent = styled.div({
+  padding: "1em",
+});
+
+const Divider = styled.hr({
+  borderTop: `1px solid ${theme.colors.divider}`,
+});
+
+export const Card = ({ price, currency, url, image, itemName }) => {
   return (
     <CardContainer>
-      <Link href="/product/[slug]" as={`/product/${url.current}`}>
-        <Image
-          src={urlFor(image).url()}
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="cover"
-        />
+      <Link href={`/product/${encodeURIComponent(url.current)}`} passHref>
+        <a>
+          <Image
+            src={urlFor(image).url()}
+            width="100%"
+            height="100%"
+            layout="responsive"
+            objectFit="cover"
+            alt={itemName}
+          />
+        </a>
       </Link>
-
-      {price && formatCurrency(currency, "sv-SE").format(price)}
-      <p>{itemName}</p>
-      <button
-        className="snipcart-add-item"
-        data-item-id={id}
-        data-item-price={price}
-        data-item-url={url}
-        data-item-description={description}
-        data-item-image={image}
-        data-item-name={itemName}
-      >
-        Add to cart
-      </button>
+      <CardContent>
+        <h3>{itemName}</h3>
+        <Divider />
+        {price && formatCurrency(currency, "sv-SE").format(price)}
+      </CardContent>
     </CardContainer>
   );
 };

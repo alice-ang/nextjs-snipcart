@@ -17,8 +17,13 @@ export const urlFor = (source) => {
 };
 
 export const variables = {
-  ProductSize: 150,
-  [Breakpoints.LaptopOrLarger]: {
-    ProductSize: 250,
+  ProductSizeMobile: 150,
+  [Breakpoints.BigScreenOrLarger]: {
+    ProductSizeLarge: 350,
   },
 };
+
+export const menuItems = [
+  { url: "/products", name: "Produkter" },
+  { url: "/", name: "Hem" },
+];
