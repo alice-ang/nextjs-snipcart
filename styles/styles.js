@@ -5,13 +5,15 @@ body,html {
 margin: 0;
 box-sizing: border-box;
 background: #f0f0f0;
+font-family: Arial, Helvetica, sans-serif;
 }
 `;
 export const theme = {
   colors: {
     primary: "#f0f0f0",
     darkPrimary: "#dedede",
-    divider: "#eaeaea",
+    divider: "#e3e3e3",
+    dark: "#191919",
   },
 };
 export const Breakpoints = {

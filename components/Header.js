@@ -4,6 +4,7 @@ import Link from "next/link";
 import { menuItems } from "../utils";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { theme } from "../styles/styles";
 
 const StyledHeader = styled.header({
   display: "flex",
@@ -13,13 +14,28 @@ const StyledHeader = styled.header({
   justifyContent: "space-around",
 });
 
-const Items = styled.ul(({ isMobile }) => ({
+const Items = styled.ul(() => ({
   listStyle: "none",
   display: "flex",
-  flexDirection: isMobile ? "column" : "row",
   padding: 0,
   li: {
     padding: "0px 1em",
+  },
+}));
+
+const MobileItems = styled.ul(() => ({
+  listStyle: "none",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-around",
+  padding: 0,
+  height: "70%",
+  li: {
+    fontSize: "2rem",
+    padding: "0px 1em",
+    a: {
+      textDecoration: "none",
+    },
   },
 }));
 
@@ -42,7 +58,7 @@ const MobileHeader = styled.div(({ isOpen }) => ({
   zIndex: 1,
   top: 0,
   left: 0,
-  backgroundColor: "blue",
+  backgroundColor: theme.colors.primary,
   overflowX: "hidden",
   transition: "0.5s",
   paddingTop: 60,
@@ -95,7 +111,7 @@ export default function Header() {
         {toggle && (
           <MobileHeader isOpen={toggle}>
             <CloseButton size={16} onClick={() => setToggle(!toggle)} />
-            <Items isMobile>
+            <MobileItems isMobile>
               {menuItems.map((item) => {
                 return (
                   <li onClick={() => setToggle(!toggle)}>
@@ -103,7 +119,7 @@ export default function Header() {
                   </li>
                 );
               })}
-            </Items>
+            </MobileItems>
           </MobileHeader>
         )}
       </StyledHeader>

@@ -20,7 +20,7 @@ const CardContent = styled.div({
 });
 
 const Divider = styled.hr({
-  borderTop: `2px solid ${theme.colors.divider}`,
+  borderTop: `1px solid ${theme.colors.divider}`,
 });
 
 export const Card = ({

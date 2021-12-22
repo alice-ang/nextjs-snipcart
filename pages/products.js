@@ -17,6 +17,7 @@ const ProductGrid = styled.div({
 
 export default function Products(props) {
   const { products = [], hero } = props;
+  console.log(props);
   return (
     <>
       <Hero image={hero.heroImage}>
@@ -40,7 +41,7 @@ export default function Products(props) {
                 <Card
                   key={_id}
                   itemName={title}
-                  url={props.path}
+                  url={slug}
                   image={mainImage}
                   description={description}
                   id={slug}

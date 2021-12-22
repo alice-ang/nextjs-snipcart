@@ -1,15 +1,16 @@
 import styled from "styled-components";
+import { theme } from "../styles/styles";
 
 const Buy = styled.button({
-  background: "black",
+  background: theme.colors.dark,
   width: "100%",
-  border: "4px solid black",
+  border: `4px solid ${theme.colors.dark}`,
   color: "white",
   transition: "0.3s",
   padding: "0.5em",
   "&:hover": {
     background: "white",
-    color: "black",
+    color: theme.colors.dark,
   },
 });
 
