@@ -40,7 +40,13 @@ const Overlay = styled.div({
 export const Hero = ({ image, children }) => {
   return (
     <HeroContainer>
-      <Image src={urlFor(image).url()} layout="fill" objectFit="cover" />
+      <Image
+        src={urlFor(image).url()}
+        layout="fill"
+        objectFit="cover"
+        priority
+        alt="alt"
+      />
       <HeroText> {children}</HeroText>
       <Overlay />
     </HeroContainer>

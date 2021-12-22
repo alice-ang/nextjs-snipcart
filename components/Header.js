@@ -114,7 +114,7 @@ export default function Header() {
             <MobileItems isMobile>
               {menuItems.map((item) => {
                 return (
-                  <li onClick={() => setToggle(!toggle)}>
+                  <li onClick={() => setToggle(!toggle)} key={item.name}>
                     <Link href={item.url}>{item.name}</Link>
                   </li>
                 );

@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { BuyButton } from "./BuyButton";
 import { theme } from "../styles/styles";
+import { Product } from "./Product";
 
 const CardContainer = styled.div({
   display: "inline-flex",
@@ -23,25 +24,20 @@ const Divider = styled.hr({
   borderTop: `1px solid ${theme.colors.divider}`,
 });
 
-export const Card = ({
-  id,
-  price,
-  currency,
-  url,
-  description,
-  image,
-  itemName,
-}) => {
+export const Card = ({ price, currency, url, image, itemName }) => {
   return (
     <CardContainer>
-      <Link href="/product/[slug]" as={`/product/${url.current}`}>
-        <Image
-          src={urlFor(image).url()}
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="cover"
-        />
+      <Link href={`/product/${encodeURIComponent(url.current)}`} passHref>
+        <a>
+          <Image
+            src={urlFor(image).url()}
+            width="100%"
+            height="100%"
+            layout="responsive"
+            objectFit="cover"
+            alt={itemName}
+          />
+        </a>
       </Link>
       <CardContent>
         <h3>{itemName}</h3>

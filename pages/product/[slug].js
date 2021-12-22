@@ -38,6 +38,7 @@ export default function Product(props) {
           height="100%"
           layout="responsive"
           objectFit="cover"
+          alt={title}
         />
       )}
       <h2>{title}</h2>

@@ -27,6 +27,7 @@ export const Product = ({ product }) => {
           src={urlFor(product.mainImage).url()}
           layout="fill"
           objectFit="cover"
+          alt={product.title}
         />
       )}
       <div className="product__price-button-container">

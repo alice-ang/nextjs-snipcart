@@ -17,7 +17,6 @@ const ProductGrid = styled.div({
 
 export default function Products(props) {
   const { products = [], hero } = props;
-  console.log(props);
   return (
     <>
       <Hero image={hero.heroImage}>
