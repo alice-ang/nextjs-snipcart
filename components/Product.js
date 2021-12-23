@@ -16,7 +16,11 @@ export const Product = ({ product }) => {
 
   return (
     <ProductContainer>
-      <Link href="/product/[slug]" as={`/product/${product.slug.current}`}>
+      <Link
+        href="/product/[slug]"
+        as={`/product/${product.slug.current}`}
+        passHref
+      >
         <h2>
           <a>{product.title}</a>
         </h2>

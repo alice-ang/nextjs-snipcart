@@ -3,6 +3,8 @@ import groq from "groq";
 import client from "../client";
 import { Card } from "../components/Card";
 import { Hero } from "../components/Hero";
+import { variables } from "../utils";
+import { Breakpoints } from "../styles/styles";
 
 const ProductContainer = styled.div({
   padding: "1em",
@@ -10,9 +12,13 @@ const ProductContainer = styled.div({
 
 const ProductGrid = styled.div({
   display: "grid",
-  gridTemplateColumns: `repeat(auto-fill, minmax(100px, 1fr))`,
+  gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
   gridGap: "1em",
   margin: 0,
+  [Breakpoints.LaptopOrLarger]: {
+    gridTemplateColumns: `repeat(auto-fit, minmax(250px, 1fr))`,
+    gridGap: "2em",
+  },
 });
 
 export default function Products(props) {
