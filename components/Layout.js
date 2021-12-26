@@ -2,6 +2,8 @@ import Head from "next/head";
 import styled from "styled-components";
 import { Breakpoints } from "../styles/styles";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 const LayoutContainer = styled.div({
   // [Breakpoints.BigScreenOrLarger]: {
   //   width: "80%",
@@ -35,6 +37,7 @@ export default function Layout({ children }) {
         data-api-key="ZmRjNjc1NTAtYWRlMS00MTk0LWFmMWQtYTlhMDU2ZDA0ODRjNjM3NzUwMjg1MDU2MDEzODMx"
         hidden
       ></div>
+      <Footer />
     </LayoutContainer>
   );
 }

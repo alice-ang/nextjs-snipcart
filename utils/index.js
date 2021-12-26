@@ -25,5 +25,8 @@ export const variables = {
 
 export const menuItems = [
   { url: "/products", name: "Produkter" },
-  { url: "/", name: "Hem" },
+  { url: "/category", name: "Category" },
+  { url: "/products", name: "Produkter" },
+  { url: "/products", name: "Produkter" },
+  { url: "/knitted", name: "Stickat" },
 ];

@@ -1,12 +1,16 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { urlFor } from "../utils";
+import { Breakpoints } from "../styles/styles";
 
 const HeroContainer = styled.div({
   display: "block",
   position: "relative",
   textAlign: "center",
   height: "40vh",
+  [Breakpoints.LaptopOrLarger]: {
+    height: "70vh",
+  },
 });
 
 const HeroText = styled.div({
