@@ -119,14 +119,14 @@ export default function Header() {
         <Logo>
           <Link href="/">
             <a>
-              <HeaderTitle>Test</HeaderTitle>
+              <HeaderTitle>by-ewa-ang</HeaderTitle>
             </a>
           </Link>
         </Logo>
         <Items>
           {menuItems.map((item) => {
             return (
-              <li>
+              <li key={item.name}>
                 <Link href={item.url}>{item.name}</Link>
               </li>
             );
@@ -151,9 +151,9 @@ export default function Header() {
               />
             </svg>
           </a>
-          {/* <Badge>
+          <Badge>
             (<span className="snipcart-items-count"></span>)
-          </Badge> */}
+          </Badge>
         </Cart>
         {toggle && (
           <MobileHeader isOpen={toggle}>

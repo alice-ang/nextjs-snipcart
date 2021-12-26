@@ -14,6 +14,7 @@ export const theme = {
     darkPrimary: "#dedede",
     divider: "#e3e3e3",
     dark: "#191919",
+    heart: "#f79",
   },
 };
 export const Breakpoints = {
