@@ -15,7 +15,7 @@ const ProductGrid = styled.div({
   gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
   gridGap: "1em",
   margin: 0,
-  [Breakpoints.LaptopOrLarger]: {
+  [Breakpoints.TabletOrLarger]: {
     gridTemplateColumns: `repeat(auto-fit, minmax(250px, 1fr))`,
     gridGap: "2em",
   },

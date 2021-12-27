@@ -14,7 +14,7 @@ export const theme = {
     loader: "rgba(222, 222, 222, 0.3)",
     darkPrimary: "#dedede",
     light: "#fff",
-    divider: "#e3e3e3",
+    divider: "#e5e5e5",
     dark: "#191919",
     heart: "#f79",
   },
