@@ -1,21 +1,16 @@
-import styled from "styled-components";
-import groq from "groq";
-import client from "../client";
 import { Hero } from "../components/Hero";
+import { useHero } from "../hooks/useHero";
 
-export default function Home({ hero }) {
+export default function Home() {
+  const hero = useHero();
   return (
     <div>
-      <Hero image={hero.heroImage}>
-        <h1>Lorem ipsum</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-      </Hero>
+      {hero && (
+        <Hero image={hero.heroImage}>
+          <h1>Lorem ipsum</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </Hero>
+      )}
     </div>
   );
 }
-
-Home.getInitialProps = async () => ({
-  hero: await client.fetch(groq`
-      *[_type == "hero" && name == 'Home'][0]
-    `),
-});

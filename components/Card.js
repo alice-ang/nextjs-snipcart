@@ -14,6 +14,10 @@ const CardContainer = styled.div({
   h3: {
     margin: 0,
   },
+  a: {
+    textDecoration: "none",
+    color: theme.colors.dark,
+  },
 });
 
 const CardContent = styled.div({
@@ -21,7 +25,7 @@ const CardContent = styled.div({
 });
 
 const Divider = styled.hr({
-  borderTop: `1px solid ${theme.colors.divider}`,
+  border: `1px solid ${theme.colors.divider}`,
 });
 
 export const Card = ({ price, currency, url, image, itemName }) => {
@@ -37,13 +41,13 @@ export const Card = ({ price, currency, url, image, itemName }) => {
             objectFit="cover"
             alt={itemName}
           />
+          <CardContent>
+            <h3>{itemName}</h3>
+            <Divider />
+            {price && formatCurrency(currency, "sv-SE").format(price)}
+          </CardContent>
         </a>
       </Link>
-      <CardContent>
-        <h3>{itemName}</h3>
-        <Divider />
-        {price && formatCurrency(currency, "sv-SE").format(price)}
-      </CardContent>
     </CardContainer>
   );
 };

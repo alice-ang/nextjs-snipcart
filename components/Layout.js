@@ -1,12 +1,18 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { Breakpoints } from "../styles/styles";
+import { Breakpoints, theme } from "../styles/styles";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
+
 const LayoutContainer = styled.div({
   // [Breakpoints.BigScreenOrLarger]: {
   //   width: "80%",
   //   margin: "0 auto",
   // },
+});
+
+const Content = styled.main({
+  backgroundColor: theme.colors.light,
 });
 
 export default function Layout({ children }) {
@@ -24,7 +30,7 @@ export default function Layout({ children }) {
         <link rel="shortcut icon" href="../public/favicon.ico" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <Content>{children}</Content>
       <script
         async
         src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
@@ -35,6 +41,7 @@ export default function Layout({ children }) {
         data-api-key="ZmRjNjc1NTAtYWRlMS00MTk0LWFmMWQtYTlhMDU2ZDA0ODRjNjM3NzUwMjg1MDU2MDEzODMx"
         hidden
       ></div>
+      <Footer />
     </LayoutContainer>
   );
 }

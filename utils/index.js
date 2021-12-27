@@ -23,7 +23,7 @@ export const variables = {
   },
 };
 
-export const menuItems = [
-  { url: "/products", name: "Produkter" },
+export const staticMenuItems = [
   { url: "/", name: "Hem" },
+  { url: "/products", name: "Alla produkter" },
 ];

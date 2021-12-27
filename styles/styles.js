@@ -11,9 +11,12 @@ font-family: Arial, Helvetica, sans-serif;
 export const theme = {
   colors: {
     primary: "#f0f0f0",
+    loader: "rgba(222, 222, 222, 0.3)",
     darkPrimary: "#dedede",
+    light: "#fff",
     divider: "#e3e3e3",
     dark: "#191919",
+    heart: "#f79",
   },
 };
 export const Breakpoints = {
