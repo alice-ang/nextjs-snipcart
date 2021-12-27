@@ -20,29 +20,18 @@ const Price = styled.p({
   fontWeight: "bold",
 });
 
-export default function Category(props) {
-  const [foods, setFoods] = useState(null);
+export default function Category() {
+  const [categories, setCategories] = useState(null);
 
   useEffect(() => {
     const query = groq`*[_type == "product"]`;
     client
       .fetch(query)
-      .then((data) => setFoods(data))
+      .then((data) => setCategories(data))
       .catch(console.error);
   }, []);
 
   const router = useRouter();
-  console.log(foods);
+  console.log(categories);
   return <ProductPage>hej</ProductPage>;
 }
-
-// const query = groq`*[_type == "product" && $keyword in categories[]->slug.current]{
-//   title,
-// slug
-// }`;
-
-// Category.getInitialProps = async function (context) {
-//   const { keyword = "" } = context.query;
-//   console.log(keyword);
-//   return await client.fetch(query, { keyword });
-// };

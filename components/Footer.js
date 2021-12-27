@@ -32,14 +32,14 @@ export default function Footer() {
           target="_blank"
           rel="noreferrer"
         >
-          <FaFacebookSquare color={theme.colors.dark} size={18} />
+          <FaFacebookSquare color={theme.colors.dark} size={24} />
         </a>
         <a
           href="https://www.instagram.com/by.ewa.ang/"
           target="_blank"
           rel="noreferrer"
         >
-          <FaInstagram color={theme.colors.dark} size={18} />
+          <FaInstagram color={theme.colors.dark} size={24} />
         </a>
       </Socials>
       <p>
