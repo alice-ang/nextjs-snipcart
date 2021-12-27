@@ -1,6 +1,6 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { Breakpoints, theme } from "../styles/styles";
+import { theme } from "../styles/styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 

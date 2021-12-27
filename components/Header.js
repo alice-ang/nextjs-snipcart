@@ -28,6 +28,7 @@ const Items = styled.ul(() => ({
   a: {
     textDecoration: "none",
     color: theme.colors.dark,
+    textTransform: "capitalize",
     "&:hover": {
       textDecoration: "underline",
     },
@@ -103,7 +104,7 @@ const Cart = styled.div({
 
 const MenuButton = styled(GiHamburgerMenu)({
   display: "block",
-  [Breakpoints.TabletOrLarger]: {
+  [Breakpoints.LaptopOrLarger]: {
     display: "none",
   },
 });
@@ -130,7 +131,7 @@ export default function Header() {
           <Items>
             {staticMenuItems.map((item) => {
               return (
-                <li onClick={() => setToggle(!toggle)} key={item.name}>
+                <li key={item.name}>
                   <Link href={item.url}>{item.name}</Link>
                 </li>
               );
