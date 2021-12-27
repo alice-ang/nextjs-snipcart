@@ -4,7 +4,7 @@ import { theme } from "../styles/styles";
 
 const StyledFooter = styled.div({
   width: "100%",
-  marginTop: "1em",
+  margin: "0.5em 0px",
   bottom: 0,
   textAlign: "center",
   p: {

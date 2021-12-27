@@ -1,10 +1,11 @@
 import { useState } from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import { menuItems } from "../utils";
+import { staticMenuItems } from "../utils";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { Breakpoints, theme } from "../styles/styles";
+import { useMenuItems } from "../hooks/useMenuItems";
 
 const StyledHeader = styled.header({
   display: "flex",
@@ -84,6 +85,7 @@ const MobileHeader = styled.div(({ isOpen }) => ({
   a: {
     textDecoration: "none",
     color: theme.colors.dark,
+    textTransform: "capitalize",
   },
 }));
 
@@ -112,6 +114,7 @@ const Badge = styled.span({
 
 export default function Header() {
   const [toggle, setToggle] = useState(false);
+  const menuItems = useMenuItems();
   return (
     <>
       <StyledHeader>
@@ -123,15 +126,33 @@ export default function Header() {
             </a>
           </Link>
         </Logo>
-        <Items>
-          {menuItems.map((item) => {
-            return (
-              <li key={item.name}>
-                <Link href={item.url}>{item.name}</Link>
-              </li>
-            );
-          })}
-        </Items>
+        {menuItems && (
+          <Items>
+            {staticMenuItems.map((item) => {
+              return (
+                <li onClick={() => setToggle(!toggle)} key={item.name}>
+                  <Link href={item.url}>{item.name}</Link>
+                </li>
+              );
+            })}
+            {menuItems.items.map((item) => {
+              return (
+                <li onClick={() => setToggle(!toggle)} key={item}>
+                  <Link
+                    href={{
+                      pathname: "/category/[param]",
+                      query: { param: item },
+                    }}
+                    passHref
+                  >
+                    <a>{item}</a>
+                  </Link>
+                </li>
+              );
+            })}
+          </Items>
+        )}
+
         <Cart>
           <a
             className="header__summary snipcart-checkout snipcart-summary"
@@ -158,15 +179,32 @@ export default function Header() {
         {toggle && (
           <MobileHeader isOpen={toggle}>
             <CloseButton size={16} onClick={() => setToggle(!toggle)} />
-            <MobileItems isMobile>
-              {menuItems.map((item) => {
-                return (
-                  <li onClick={() => setToggle(!toggle)} key={item.name}>
-                    <Link href={item.url}>{item.name}</Link>
-                  </li>
-                );
-              })}
-            </MobileItems>
+            {menuItems && (
+              <MobileItems isMobile>
+                {staticMenuItems.map((item) => {
+                  return (
+                    <li onClick={() => setToggle(!toggle)} key={item.name}>
+                      <Link href={item.url}>{item.name}</Link>
+                    </li>
+                  );
+                })}
+                {menuItems.items.map((item) => {
+                  return (
+                    <li onClick={() => setToggle(!toggle)} key={item}>
+                      <Link
+                        href={{
+                          pathname: "/category/[param]",
+                          query: { param: item },
+                        }}
+                        passHref
+                      >
+                        <a>{item}</a>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </MobileItems>
+            )}
           </MobileHeader>
         )}
       </StyledHeader>

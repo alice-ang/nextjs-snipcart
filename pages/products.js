@@ -4,6 +4,7 @@ import { Hero } from "../components/Hero";
 import { Breakpoints } from "../styles/styles";
 import { useHero } from "../hooks/useHero";
 import { useProducts } from "../hooks/useProducts";
+import { Loader } from "../components/Loader";
 
 const ProductContainer = styled.div({
   padding: "1em",
@@ -32,36 +33,41 @@ export default function Products() {
           <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
         </Hero>
       )}
-      {products && (
-        <ProductContainer>
-          <h1>Products </h1>
-          <ProductGrid>
-            {products.map(
-              ({
-                _id,
-                title = "",
-                slug = "",
-                mainImage,
-                price,
-                currency,
-                description,
-              }) =>
-                slug && (
-                  <Card
-                    key={_id}
-                    itemName={title}
-                    url={slug}
-                    image={mainImage}
-                    description={description}
-                    id={slug}
-                    price={price}
-                    currency={currency}
-                  />
-                )
-            )}
-          </ProductGrid>
-        </ProductContainer>
-      )}
+
+      <ProductContainer>
+        {products ? (
+          <>
+            <h1>Products </h1>
+            <ProductGrid>
+              {products.map(
+                ({
+                  _id,
+                  title = "",
+                  slug = "",
+                  mainImage,
+                  price,
+                  currency,
+                  description,
+                }) =>
+                  slug && (
+                    <Card
+                      key={_id}
+                      itemName={title}
+                      url={slug}
+                      image={mainImage}
+                      description={description}
+                      id={slug}
+                      price={price}
+                      currency={currency}
+                    />
+                  )
+              )}
+            </ProductGrid>
+          </>
+        ) : (
+          <Loader />
+        )}
+      </ProductContainer>
     </>
   );
 }

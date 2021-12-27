@@ -4,7 +4,7 @@ import groq from "groq";
 import Image from "next/image";
 import client from "../../client";
 import { urlFor } from "../../utils";
-import { BuyButton } from "../../components/BuyButton";
+import { Loader } from "../../components/Loader";
 import { formatCurrency } from "../../utils";
 import { useRouter } from "next/router";
 
@@ -33,5 +33,9 @@ export default function Category() {
 
   const router = useRouter();
   console.log(categories);
-  return <ProductPage>hej</ProductPage>;
+  return (
+    <ProductPage>
+      <Loader />
+    </ProductPage>
+  );
 }
