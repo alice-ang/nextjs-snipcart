@@ -25,5 +25,5 @@ export const variables = {
 
 export const staticMenuItems = [
   { url: "/", name: "Hem" },
-  { url: "/products", name: "Alla produkter" },
+  { url: "/products", name: "Alla" },
 ];

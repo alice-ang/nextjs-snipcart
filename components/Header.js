@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { Breakpoints, theme } from "../styles/styles";
 import { useMenuItems } from "../hooks/useMenuItems";
+import { AiOutlineArrowRight } from "react-icons/ai";
 
 const StyledHeader = styled.header({
   display: "flex",
@@ -35,26 +36,6 @@ const Items = styled.ul(() => ({
   },
 }));
 
-const MobileItems = styled.ul(() => ({
-  display: "block",
-  [Breakpoints.LaptopOrLarger]: {
-    display: "none",
-  },
-  listStyle: "none",
-  display: "flex",
-  flexDirection: "column",
-  justifyContent: "space-around",
-  padding: 0,
-  height: "70%",
-  li: {
-    fontSize: "2rem",
-    padding: "0px 1em",
-    a: {
-      textDecoration: "none",
-    },
-  },
-}));
-
 const Logo = styled.div({
   height: 38,
   display: "flex",
@@ -78,10 +59,9 @@ const MobileHeader = styled.div(({ isOpen }) => ({
   zIndex: 1,
   top: 0,
   left: 0,
-  backgroundColor: theme.colors.primary,
+  backgroundColor: "#faf9f8",
   overflowX: "hidden",
   transition: "0.5s",
-  paddingTop: 60,
   zIndex: 10,
   a: {
     textDecoration: "none",
@@ -90,12 +70,41 @@ const MobileHeader = styled.div(({ isOpen }) => ({
   },
 }));
 
-const CloseButton = styled(ImCross)({
-  position: "absolute",
-  top: 25,
-  right: 25,
-  fontSize: 36,
+const HeaderTop = styled.div({
+  display: "flex",
+  justifyContent: "flex-end",
+  backgroundColor: "#f4dcd6",
+  height: 60,
 });
+
+const CloseButton = styled(ImCross)({
+  padding: "0.5em",
+  fontSize: 36,
+  color: theme.colors.dark,
+});
+const MobileItems = styled.ul(() => ({
+  display: "block",
+  [Breakpoints.LaptopOrLarger]: {
+    display: "none",
+  },
+  listStyle: "none",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-start",
+  padding: 0,
+  height: "70%",
+  li: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    fontSize: "1.5rem",
+    padding: " 1em",
+    borderBottom: `1px solid ${theme.colors.divider}`,
+    a: {
+      textDecoration: "none",
+    },
+  },
+}));
 
 const Cart = styled.div({
   display: "flex",
@@ -179,13 +188,17 @@ export default function Header() {
         </Cart>
         {toggle && (
           <MobileHeader isOpen={toggle}>
-            <CloseButton size={16} onClick={() => setToggle(!toggle)} />
+            <HeaderTop>
+              <CloseButton size={16} onClick={() => setToggle(!toggle)} />
+            </HeaderTop>
+
             {menuItems && (
               <MobileItems isMobile>
                 {staticMenuItems.map((item) => {
                   return (
                     <li onClick={() => setToggle(!toggle)} key={item.name}>
                       <Link href={item.url}>{item.name}</Link>
+                      <AiOutlineArrowRight size={"1.5rem"} />
                     </li>
                   );
                 })}
@@ -201,6 +214,7 @@ export default function Header() {
                       >
                         <a>{item}</a>
                       </Link>
+                      <AiOutlineArrowRight size={"1.5rem"} />
                     </li>
                   );
                 })}
