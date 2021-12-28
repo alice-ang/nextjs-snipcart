@@ -37,7 +37,7 @@ export default function Products() {
       <ProductContainer>
         {products ? (
           <>
-            <h1>Products </h1>
+            <h1>Produkter </h1>
             <ProductGrid>
               {products.map(
                 ({
