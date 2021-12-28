@@ -1,8 +1,19 @@
 import { Hero } from "../components/Hero";
-import { useHero } from "../hooks/useHero";
+import { useEffect, useState } from "react";
+import groq from "groq";
+import client from "../client";
 
 export default function Home() {
-  const hero = useHero();
+  const [hero, setHero] = useState(null);
+
+  useEffect(() => {
+    const heroQuery = groq` *[_type == "hero" && name == 'Home' ][0]`;
+    client
+      .fetch(heroQuery)
+      .then((data) => setHero(data))
+      .catch(console.error);
+  }, []);
+
   return (
     <div>
       {hero && (

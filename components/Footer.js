@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { FaFacebookSquare, FaInstagram } from "react-icons/fa";
 import { theme } from "../styles/styles";
+import { useCurrentYear } from "../hooks/useCurrentYear";
 
 const StyledFooter = styled.div({
   width: "100%",
@@ -24,6 +25,7 @@ const Heart = styled.span({
   color: theme.colors.heart,
 });
 export default function Footer() {
+  const year = useCurrentYear();
   return (
     <StyledFooter>
       <Socials>
@@ -43,7 +45,8 @@ export default function Footer() {
         </a>
       </Socials>
       <p>
-        Made with <Heart>♥</Heart> using Sanity and NextJS
+        Copyright &copy; {year} | Made with <Heart>♥</Heart> using Sanity and
+        NextJS
       </p>
     </StyledFooter>
   );

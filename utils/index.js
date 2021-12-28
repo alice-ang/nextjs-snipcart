@@ -27,3 +27,8 @@ export const staticMenuItems = [
   { url: "/", name: "Hem" },
   { url: "/products", name: "Alla" },
 ];
+
+export const currentYear = () => {
+  const date = new Date();
+  return date.getFullYear();
+};
