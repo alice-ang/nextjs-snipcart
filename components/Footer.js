@@ -10,6 +10,7 @@ const StyledFooter = styled.div({
   textAlign: "center",
   p: {
     margin: 0,
+    padding: "0px 0.5em",
   },
 });
 
@@ -26,6 +27,7 @@ const Heart = styled.span({
 });
 export default function Footer() {
   const year = useCurrentYear();
+
   return (
     <StyledFooter>
       <Socials>
@@ -45,8 +47,8 @@ export default function Footer() {
         </a>
       </Socials>
       <p>
-        Copyright &copy; {year} | Made with <Heart>♥</Heart> using Sanity and
-        NextJS
+        Copyright &copy; {year} by-ewa-ang | Utvecklad med <Heart>♥</Heart> av
+        Alice Anglesjö
       </p>
     </StyledFooter>
   );

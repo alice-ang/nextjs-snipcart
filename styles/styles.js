@@ -5,7 +5,11 @@ body,html {
 margin: 0;
 box-sizing: border-box;
 background: #f0f0f0;
-font-family: Arial, Helvetica, sans-serif;
+font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Prata', serif;
 }
 `;
 export const theme = {

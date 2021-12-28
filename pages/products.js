@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { Card } from "../components/Card";
 import { Hero } from "../components/Hero";
 import { Loader } from "../components/Loader";
+import { Grid } from "../components/Grid";
 import { Breakpoints } from "../styles/styles";
 import { useProducts } from "../hooks/useProducts";
 import { useEffect, useState } from "react";
@@ -10,17 +11,6 @@ import client from "../client";
 
 const ProductContainer = styled.div({
   padding: "1em",
-});
-
-const ProductGrid = styled.div({
-  display: "grid",
-  gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
-  gridGap: "1em",
-  margin: 0,
-  [Breakpoints.TabletOrLarger]: {
-    gridTemplateColumns: `repeat(auto-fit, minmax(250px, 1fr))`,
-    gridGap: "2em",
-  },
 });
 
 export default function Products() {
@@ -47,7 +37,7 @@ export default function Products() {
         {products ? (
           <>
             <h1>Produkter </h1>
-            <ProductGrid>
+            <Grid>
               {products.map(
                 ({
                   _id,
@@ -71,7 +61,7 @@ export default function Products() {
                     />
                   )
               )}
-            </ProductGrid>
+            </Grid>
           </>
         ) : (
           <Loader />
