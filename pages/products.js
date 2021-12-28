@@ -1,10 +1,12 @@
 import styled from "styled-components";
 import { Card } from "../components/Card";
 import { Hero } from "../components/Hero";
-import { Breakpoints } from "../styles/styles";
-import { useHero } from "../hooks/useHero";
-import { useProducts } from "../hooks/useProducts";
 import { Loader } from "../components/Loader";
+import { Breakpoints } from "../styles/styles";
+import { useProducts } from "../hooks/useProducts";
+import { useEffect, useState } from "react";
+import groq from "groq";
+import client from "../client";
 
 const ProductContainer = styled.div({
   padding: "1em",
@@ -22,9 +24,16 @@ const ProductGrid = styled.div({
 });
 
 export default function Products() {
-  const hero = useHero();
   const products = useProducts();
+  const [hero, setHero] = useState(null);
 
+  useEffect(() => {
+    const heroQuery = groq` *[_type == "hero" && name == 'Products' ][0]`;
+    client
+      .fetch(heroQuery)
+      .then((data) => setHero(data))
+      .catch(console.error);
+  }, []);
   return (
     <>
       {hero && (
