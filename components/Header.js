@@ -147,7 +147,7 @@ export default function Header() {
             })}
             {menuItems.items.map((item) => {
               return (
-                <li onClick={() => setToggle(!toggle)} key={item}>
+                <li key={item}>
                   <Link
                     href={{
                       pathname: "/category/[param]",
@@ -204,7 +204,7 @@ export default function Header() {
                 })}
                 {menuItems.items.map((item) => {
                   return (
-                    <li onClick={() => setToggle(!toggle)} key={item}>
+                    <li key={item}>
                       <Link
                         href={{
                           pathname: "/category/[param]",
