@@ -3,9 +3,13 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 body,html {
 margin: 0;
+padding: 0;
 box-sizing: border-box;
-background: #f0f0f0;
-font-family: Arial, Helvetica, sans-serif;
+font-family: 'Lato', sans-serif;
+}
+
+h1, h2, h3, h4 {
+font-family: 'Prata', serif;
 }
 `;
 export const theme = {
@@ -17,6 +21,7 @@ export const theme = {
     divider: "#e5e5e5",
     dark: "#191919",
     heart: "#f79",
+    footer: "#a09891",
   },
 };
 export const Breakpoints = {

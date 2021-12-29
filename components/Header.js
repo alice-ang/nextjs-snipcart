@@ -132,7 +132,7 @@ export default function Header() {
         <Logo>
           <Link href="/">
             <a>
-              <HeaderTitle>by-ewa-ang</HeaderTitle>
+              <HeaderTitle>by.ewa.ang</HeaderTitle>
             </a>
           </Link>
         </Logo>
