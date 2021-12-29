@@ -59,7 +59,7 @@ const MobileHeader = styled.div(({ isOpen }) => ({
   zIndex: 1,
   top: 0,
   left: 0,
-  backgroundColor: "#faf9f8",
+  backgroundColor: theme.colors.light,
   overflowX: "hidden",
   transition: "0.5s",
   zIndex: 10,
@@ -73,7 +73,7 @@ const MobileHeader = styled.div(({ isOpen }) => ({
 const HeaderTop = styled.div({
   display: "flex",
   justifyContent: "flex-end",
-  backgroundColor: "#f4dcd6",
+  backgroundColor: theme.colors.accent,
   height: 60,
 });
 
@@ -204,7 +204,7 @@ export default function Header() {
                 })}
                 {menuItems.items.map((item) => {
                   return (
-                    <li key={item}>
+                    <li key={item} onClick={() => setToggle(!toggle)}>
                       <Link
                         href={{
                           pathname: "/category/[param]",

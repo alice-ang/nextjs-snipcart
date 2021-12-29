@@ -1,6 +1,9 @@
-import { Children } from "react";
 import styled from "styled-components";
 import { Breakpoints } from "../styles/styles";
+
+const GridContainer = styled.div({
+  padding: "0px 1em 1em 1em",
+});
 
 const ProductGrid = styled.div(({}) => ({
   display: "grid",
@@ -17,6 +20,11 @@ const ProductGrid = styled.div(({}) => ({
   },
 }));
 
-export const Grid = ({ children }) => {
-  return <ProductGrid>{children}</ProductGrid>;
+export const Grid = ({ title, children }) => {
+  return (
+    <GridContainer>
+      <h2>{title}</h2>
+      <ProductGrid>{children}</ProductGrid>
+    </GridContainer>
+  );
 };
