@@ -17,7 +17,7 @@ const Content = styled.main({
 
 export default function Layout({ children }) {
   return (
-    <LayoutContainer>
+    <>
       <Head>
         <link rel="preconnect" href="https://app.snipcart.com" />
         <link rel="preconnect" href="https://cdn.snipcart.com" />
@@ -29,8 +29,11 @@ export default function Layout({ children }) {
 
         <link rel="shortcut icon" href="../public/favicon.ico" />
       </Head>
-      <Header />
-      <Content>{children}</Content>
+      <LayoutContainer>
+        <Header />
+        <Content>{children}</Content>
+        <Footer />
+      </LayoutContainer>
       <script
         async
         src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
@@ -41,7 +44,6 @@ export default function Layout({ children }) {
         data-api-key="ZmRjNjc1NTAtYWRlMS00MTk0LWFmMWQtYTlhMDU2ZDA0ODRjNjM3NzUwMjg1MDU2MDEzODMx"
         hidden
       ></div>
-      <Footer />
-    </LayoutContainer>
+    </>
   );
 }

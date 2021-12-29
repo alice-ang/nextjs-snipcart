@@ -5,9 +5,10 @@ import { useCurrentYear } from "../hooks/useCurrentYear";
 
 const StyledFooter = styled.div({
   width: "100%",
-  margin: "0.5em 0px",
   bottom: 0,
   textAlign: "center",
+  backgroundColor: theme.colors.footer,
+  color: theme.colors.light,
   p: {
     margin: 0,
     padding: "0px 0.5em",
@@ -36,18 +37,18 @@ export default function Footer() {
           target="_blank"
           rel="noreferrer"
         >
-          <FaFacebookSquare color={theme.colors.dark} size={24} />
+          <FaFacebookSquare color={theme.colors.light} size={24} />
         </a>
         <a
           href="https://www.instagram.com/by.ewa.ang/"
           target="_blank"
           rel="noreferrer"
         >
-          <FaInstagram color={theme.colors.dark} size={24} />
+          <FaInstagram color={theme.colors.light} size={24} />
         </a>
       </Socials>
       <p>
-        Copyright &copy; {year} by-ewa-ang | Utvecklad med <Heart>♥</Heart> av
+        Copyright &copy; {year} by.ewa.ang | Utvecklad med <Heart>♥</Heart> av
         Alice Anglesjö
       </p>
     </StyledFooter>

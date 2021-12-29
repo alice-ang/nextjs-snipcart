@@ -25,8 +25,8 @@ export default function Home() {
     <div>
       {hero && (
         <Hero image={hero.heroImage}>
-          <h1>Lorem ipsum</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+          <h1>{hero.heading}</h1>
+          <p>{hero.paragraph}</p>
         </Hero>
       )}
     </div>

@@ -3,8 +3,8 @@ import { createGlobalStyle } from "styled-components";
 export const GlobalStyle = createGlobalStyle`
 body,html {
 margin: 0;
+padding: 0;
 box-sizing: border-box;
-background: #f0f0f0;
 font-family: 'Lato', sans-serif;
 }
 
@@ -21,6 +21,7 @@ export const theme = {
     divider: "#e5e5e5",
     dark: "#191919",
     heart: "#f79",
+    footer: "#a09891",
   },
 };
 export const Breakpoints = {
