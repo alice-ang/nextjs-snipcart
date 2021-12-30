@@ -9,10 +9,6 @@ import { useEffect, useState } from "react";
 import groq from "groq";
 import client from "../client";
 
-const ProductContainer = styled.div({
-  padding: "1em",
-});
-
 export default function Products() {
   const products = useProducts();
   const [hero, setHero] = useState(null);
@@ -33,40 +29,35 @@ export default function Products() {
         </Hero>
       )}
 
-      <ProductContainer>
-        {products ? (
-          <>
-            <h1>Produkter </h1>
-            <Grid>
-              {products.map(
-                ({
-                  _id,
-                  title = "",
-                  slug = "",
-                  mainImage,
-                  price,
-                  currency,
-                  description,
-                }) =>
-                  slug && (
-                    <Card
-                      key={_id}
-                      itemName={title}
-                      url={slug}
-                      image={mainImage}
-                      description={description}
-                      id={slug}
-                      price={price}
-                      currency={currency}
-                    />
-                  )
-              )}
-            </Grid>
-          </>
-        ) : (
-          <Loader />
-        )}
-      </ProductContainer>
+      {products ? (
+        <Grid title="Produkter">
+          {products.map(
+            ({
+              _id,
+              title = "",
+              slug = "",
+              mainImage,
+              price,
+              currency,
+              description,
+            }) =>
+              slug && (
+                <Card
+                  key={_id}
+                  itemName={title}
+                  url={slug}
+                  image={mainImage}
+                  description={description}
+                  id={slug}
+                  price={price}
+                  currency={currency}
+                />
+              )
+          )}
+        </Grid>
+      ) : (
+        <Loader />
+      )}
     </>
   );
 }

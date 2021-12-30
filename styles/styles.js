@@ -14,10 +14,11 @@ font-family: 'Prata', serif;
 `;
 export const theme = {
   colors: {
-    primary: "#f0f0f0",
+    primary: "#f2f0ec",
     loader: "rgba(222, 222, 222, 0.3)",
     darkPrimary: "#dedede",
     light: "#fff",
+    accent: "#e7e0d4",
     divider: "#e5e5e5",
     dark: "#191919",
     heart: "#f79",
