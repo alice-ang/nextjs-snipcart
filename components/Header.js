@@ -14,6 +14,7 @@ const StyledHeader = styled.header({
   paddingBottom: 20,
   alignItems: "center",
   justifyContent: "space-around",
+  backgroundColor: theme.colors.primary,
 });
 
 const Items = styled.ul(() => ({
@@ -67,6 +68,7 @@ const MobileHeader = styled.div(({ isOpen }) => ({
     textDecoration: "none",
     color: theme.colors.dark,
     textTransform: "capitalize",
+    width: "100%",
   },
 }));
 

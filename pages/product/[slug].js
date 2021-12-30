@@ -29,6 +29,7 @@ export default function Product(props) {
     mainImage,
   } = props;
   const router = useRouter();
+
   return (
     <ProductPage>
       {props.mainImage && (
@@ -56,15 +57,6 @@ export default function Product(props) {
           Köp
         </BuyButton>
       </ButtonBar>
-
-      {/* {categories && (
-        <ul>
-          Posted in
-          {categories.map((category) => (
-            <li key={category}>{category}</li>
-          ))}
-        </ul>
-      )} */}
     </ProductPage>
   );
 }

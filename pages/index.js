@@ -10,26 +10,50 @@ import { theme, Breakpoints } from "../styles/styles";
 export default function Home() {
   const [hero, setHero] = useState(null);
   const [featured, setFeatured] = useState(null);
-
+  const [homepage, setHomepage] = useState(null);
+  const [textBlock, setTextBlock] = useState(null);
   useEffect(() => {
-    const heroQuery = groq` *[_type == "hero" && name == 'Home' ][0]`;
-    client
-      .fetch(heroQuery)
-      .then((data) => setHero(data))
-      .catch(console.error);
-
-    const featuredQuery = groq` *[_type == "featured" && name == "Home"][0]{
-      title,
-      "products": products[]->{title, slug,
-              mainImage,
-              price,
-              currency,
-              description},
+    const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
+      "pageItem": pageItem[]->{
+        products[]->
+      }
     }`;
     client
-      .fetch(featuredQuery)
-      .then((data) => setFeatured(data))
+      .fetch(homeQuery)
+      .then((data) => setHomepage(data))
+      .then(() => {
+        if (homepage) {
+          console.log(homepage);
+          homepage.pageItem.map((page) => {
+            switch (page._type) {
+              case "hero":
+                setHero(page);
+                break;
+              case "textBlock":
+                setTextBlock(page);
+                break;
+              case "featured":
+                setFeatured(page);
+                break;
+            }
+          });
+        }
+      })
       .catch(console.error);
+    // const featuredQuery = groq` *[_type == "featured" && name == "Home"][0]{
+    //   title,
+    //   "products": products[]->{
+    //     title,
+    //     slug,
+    //     mainImage,
+    //     price,
+    //     currency,
+    //     description},
+    // }`;
+    // client
+    //   .fetch(featuredQuery)
+    //   .then((data) => setFeatured(data))
+    //   .catch(console.error);
   }, []);
 
   return (
@@ -40,11 +64,14 @@ export default function Home() {
           <p>{hero.subtitle}</p>
         </Hero>
       )}
-      <TextBlock>
-        <h3>Lorem ipsum</h3>
-        Praesent eget sollicitudin augue. Cras hendrerit nisl elit, ac auctor
-        ligula tincidunt ut. Donec at dictum nunc.
-      </TextBlock>
+      {textBlock && (
+        <TextBlock
+          color={theme.colors.accent}
+          width="60%"
+          text={textBlock.text}
+        />
+      )}
+
       {featured && (
         <Grid title={featured.title}>
           {featured.products.map(
@@ -72,13 +99,6 @@ export default function Home() {
           )}
         </Grid>
       )}
-      <TextBlock color={theme.colors.accent}>
-        <h3>Lorem ipsum</h3>
-        Praesent eget sollicitudin augue. Cras hendrerit nisl elit, ac auctor
-        ligula tincidunt ut. Donec at dictum nunc. Fusce tempor imperdiet
-        eleifend. Proin faucibus dictum ligula. Pellentesque vitae tortor
-        viverra, congue diam et, ullamcorper arcu.
-      </TextBlock>
     </div>
   );
 }
