@@ -14,46 +14,27 @@ export default function Home() {
   const [textBlock, setTextBlock] = useState(null);
   useEffect(() => {
     const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
-      "pageItem": pageItem[]->{
-        products[]->
-      }
+      "pageItem": pageItem[]->{..., "products": products[]->}, 
     }`;
+
     client
       .fetch(homeQuery)
-      .then((data) => setHomepage(data))
-      .then(() => {
-        if (homepage) {
-          console.log(homepage);
-          homepage.pageItem.map((page) => {
-            switch (page._type) {
-              case "hero":
-                setHero(page);
-                break;
-              case "textBlock":
-                setTextBlock(page);
-                break;
-              case "featured":
-                setFeatured(page);
-                break;
-            }
-          });
-        }
+      .then((data) => {
+        data.pageItem.map((page) => {
+          switch (page._type) {
+            case "hero":
+              setHero(page);
+              break;
+            case "textBlock":
+              setTextBlock(page);
+              break;
+            case "featured":
+              setFeatured(page);
+              break;
+          }
+        });
       })
       .catch(console.error);
-    // const featuredQuery = groq` *[_type == "featured" && name == "Home"][0]{
-    //   title,
-    //   "products": products[]->{
-    //     title,
-    //     slug,
-    //     mainImage,
-    //     price,
-    //     currency,
-    //     description},
-    // }`;
-    // client
-    //   .fetch(featuredQuery)
-    //   .then((data) => setFeatured(data))
-    //   .catch(console.error);
   }, []);
 
   return (
