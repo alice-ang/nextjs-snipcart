@@ -1,8 +1,7 @@
 import styled from "styled-components";
-import { theme, Breakpoints } from "../styles/styles";
 import BlockContent from "@sanity/block-content-to-react";
 import sanityClient from "../client";
-import { wrapperStyle } from "../styles/styles";
+import { LayoutWidth, wrapperStyle } from "../styles/styles";
 
 const Block = styled.div(({ color }) => ({
   display: "flex",
@@ -11,18 +10,18 @@ const Block = styled.div(({ color }) => ({
   padding: "1em",
 }));
 
-const ContentWrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
+const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
 
-export const TextBlock = ({ width, color, text }) => {
+export const TextBlock = ({ color, text }) => {
   return (
     <Block color={color}>
-      <ContentWrapper width={width}>
+      <Wrapper width={LayoutWidth}>
         <BlockContent
           blocks={text}
           projectId={sanityClient.projectId}
           dataset={sanityClient.dataset}
         />
-      </ContentWrapper>
+      </Wrapper>
     </Block>
   );
 };

@@ -1,9 +1,7 @@
-import styled from "styled-components";
 import { Card } from "../components/Card";
 import { Hero } from "../components/Hero";
 import { Loader } from "../components/Loader";
 import { Grid } from "../components/Grid";
-import { Breakpoints } from "../styles/styles";
 import { useProducts } from "../hooks/useProducts";
 import { useEffect, useState } from "react";
 import groq from "groq";

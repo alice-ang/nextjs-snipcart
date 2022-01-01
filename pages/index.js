@@ -5,14 +5,17 @@ import client from "../client";
 import { Grid } from "../components/Grid";
 import { Card } from "../components/Card";
 import { TextBlock } from "../components/TextBlock";
-import { theme, Breakpoints } from "../styles/styles";
+import { theme } from "../styles/styles";
+import { Loader } from "../components/Loader";
 
 export default function Home() {
   const [hero, setHero] = useState(null);
   const [featured, setFeatured] = useState(null);
   const [textBlock, setTextBlock] = useState(null);
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
       "pageItem": pageItem[]->{..., "products": products[]->}, 
     }`;
@@ -34,11 +37,13 @@ export default function Home() {
           }
         });
       })
+      .then(setLoading(false))
       .catch(console.error);
   }, []);
 
   return (
     <div>
+      {isLoading && <Loader />}
       {hero && (
         <Hero image={hero.heroImage}>
           <h1>{hero.heading}</h1>
@@ -46,11 +51,7 @@ export default function Home() {
         </Hero>
       )}
       {textBlock && (
-        <TextBlock
-          color={theme.colors.accent}
-          width="60%"
-          text={textBlock.text}
-        />
+        <TextBlock color={theme.colors.accent} text={textBlock.text} />
       )}
 
       {featured && (

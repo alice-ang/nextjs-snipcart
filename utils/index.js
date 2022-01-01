@@ -18,7 +18,7 @@ export const urlFor = (source) => {
 
 export const variables = {
   ProductSizeMobile: 150,
-  [Breakpoints.BigScreenOrLarger]: {
+  [Breakpoints.XXL]: {
     ProductSizeLarge: 350,
   },
 };

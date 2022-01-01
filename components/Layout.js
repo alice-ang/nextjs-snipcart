@@ -1,15 +1,10 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { theme } from "../styles/styles";
+import { theme, wrapperStyle } from "../styles/styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const LayoutContainer = styled.div({
-  // [Breakpoints.BigScreenOrLarger]: {
-  //   width: "80%",
-  //   margin: "0 auto",
-  // },
-});
+const LayoutContainer = styled.div({});
 
 const Content = styled.main({
   backgroundColor: theme.colors.light,
