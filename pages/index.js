@@ -10,8 +10,8 @@ import { theme, Breakpoints } from "../styles/styles";
 export default function Home() {
   const [hero, setHero] = useState(null);
   const [featured, setFeatured] = useState(null);
-  const [homepage, setHomepage] = useState(null);
   const [textBlock, setTextBlock] = useState(null);
+
   useEffect(() => {
     const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
       "pageItem": pageItem[]->{..., "products": products[]->}, 

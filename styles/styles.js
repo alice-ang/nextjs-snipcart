@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 body,html {
@@ -32,3 +33,10 @@ export const Breakpoints = {
   MediumScreenOrLarger: "@media (min-width: 990px)",
   BigScreenOrLarger: "@media (min-width: 1246px)",
 };
+
+export const wrapperStyle = ({ width }) => css`
+  ${Breakpoints.LaptopOrLarger} {
+    margin: 0 auto;
+    width: ${width ?? undefined};
+  }
+`;
