@@ -19,7 +19,7 @@ const StyledHeader = styled.header({
 
 const Items = styled.ul(() => ({
   display: "none",
-  [Breakpoints.LaptopOrLarger]: {
+  [Breakpoints.Large]: {
     display: "flex",
   },
   listStyle: "none",
@@ -86,7 +86,7 @@ const CloseButton = styled(ImCross)({
 });
 const MobileItems = styled.ul(() => ({
   display: "block",
-  [Breakpoints.LaptopOrLarger]: {
+  [Breakpoints.Large]: {
     display: "none",
   },
   listStyle: "none",
@@ -115,7 +115,7 @@ const Cart = styled.div({
 
 const MenuButton = styled(GiHamburgerMenu)({
   display: "block",
-  [Breakpoints.LaptopOrLarger]: {
+  [Breakpoints.Large]: {
     display: "none",
   },
 });

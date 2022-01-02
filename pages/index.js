@@ -5,59 +5,45 @@ import client from "../client";
 import { Grid } from "../components/Grid";
 import { Card } from "../components/Card";
 import { TextBlock } from "../components/TextBlock";
-import { theme, Breakpoints } from "../styles/styles";
+import { theme } from "../styles/styles";
+import { Loader } from "../components/Loader";
 
 export default function Home() {
   const [hero, setHero] = useState(null);
   const [featured, setFeatured] = useState(null);
-  const [homepage, setHomepage] = useState(null);
   const [textBlock, setTextBlock] = useState(null);
+  const [isLoading, setLoading] = useState(false);
+
   useEffect(() => {
+    setLoading(true);
     const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
-      "pageItem": pageItem[]->{
-        products[]->
-      }
+      "pageItem": pageItem[]->{..., "products": products[]->}, 
     }`;
+
     client
       .fetch(homeQuery)
-      .then((data) => setHomepage(data))
-      .then(() => {
-        if (homepage) {
-          console.log(homepage);
-          homepage.pageItem.map((page) => {
-            switch (page._type) {
-              case "hero":
-                setHero(page);
-                break;
-              case "textBlock":
-                setTextBlock(page);
-                break;
-              case "featured":
-                setFeatured(page);
-                break;
-            }
-          });
-        }
+      .then((data) => {
+        data.pageItem.map((page) => {
+          switch (page._type) {
+            case "hero":
+              setHero(page);
+              break;
+            case "textBlock":
+              setTextBlock(page);
+              break;
+            case "featured":
+              setFeatured(page);
+              break;
+          }
+        });
       })
+      .then(setLoading(false))
       .catch(console.error);
-    // const featuredQuery = groq` *[_type == "featured" && name == "Home"][0]{
-    //   title,
-    //   "products": products[]->{
-    //     title,
-    //     slug,
-    //     mainImage,
-    //     price,
-    //     currency,
-    //     description},
-    // }`;
-    // client
-    //   .fetch(featuredQuery)
-    //   .then((data) => setFeatured(data))
-    //   .catch(console.error);
   }, []);
 
   return (
     <div>
+      {isLoading && <Loader />}
       {hero && (
         <Hero image={hero.heroImage}>
           <h1>{hero.heading}</h1>
@@ -65,11 +51,7 @@ export default function Home() {
         </Hero>
       )}
       {textBlock && (
-        <TextBlock
-          color={theme.colors.accent}
-          width="60%"
-          text={textBlock.text}
-        />
+        <TextBlock color={theme.colors.accent} text={textBlock.text} />
       )}
 
       {featured && (

@@ -1,4 +1,5 @@
 import { createGlobalStyle } from "styled-components";
+import { styled, css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 body,html {
@@ -12,6 +13,7 @@ h1, h2, h3, h4 {
 font-family: 'Prata', serif;
 }
 `;
+
 export const theme = {
   colors: {
     primary: "#f2f0ec",
@@ -25,10 +27,20 @@ export const theme = {
     footer: "#a09891",
   },
 };
+
 export const Breakpoints = {
-  TabletOrLarger: "@media (min-width: 501px)",
-  LaptopOrLarger: "@media (min-width: 813px)",
-  TabletOrSmaller: "@media (max-width: 812px)",
-  MediumScreenOrLarger: "@media (min-width: 990px)",
-  BigScreenOrLarger: "@media (min-width: 1246px)",
+  Small: "@media (min-width: 576px)",
+  Medium: "@media (min-width: 768px)",
+  Large: "@media (min-width: 992px)",
+  XL: "@media (min-width: 1200px)",
+  XXL: "@media (min-width: 1400px)",
 };
+
+export const wrapperStyle = ({ width }) => css`
+  ${Breakpoints.XXL} {
+    margin: 0 auto;
+    width: ${width ?? undefined};
+  }
+`;
+
+export const LayoutWidth = "70%";
