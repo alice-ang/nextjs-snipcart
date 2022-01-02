@@ -1,13 +1,12 @@
 import Head from "next/head";
 import styled from "styled-components";
-import { theme, wrapperStyle } from "../styles/styles";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 const LayoutContainer = styled.div({});
 
 const Content = styled.main({
-  backgroundColor: theme.colors.light,
+  backgroundColor: "#f7f7f7",
 });
 
 export default function Layout({ children }) {

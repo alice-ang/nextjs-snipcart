@@ -1,8 +1,6 @@
 import Image from "next/image";
 import { formatCurrency } from "../utils";
 import styled from "styled-components";
-import imageUrlBuilder from "@sanity/image-url";
-import client from "../client";
 import Link from "next/link";
 import { urlFor } from "../utils";
 import { useRouter } from "next/router";
