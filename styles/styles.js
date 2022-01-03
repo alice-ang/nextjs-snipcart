@@ -25,6 +25,7 @@ export const theme = {
     dark: "#191919",
     heart: "#f79",
     footer: "#a09891",
+    text: "#a3a1a1",
   },
 };
 

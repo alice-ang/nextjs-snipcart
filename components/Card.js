@@ -3,16 +3,18 @@ import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
-import { BuyButtonRound } from "./BuyButtonRound";
 import { theme } from "../styles/styles";
-
+import { SubTitle } from "./SubTitle";
 const CardContainer = styled.div({
   display: "inline-flex",
   flexDirection: "column",
   background: theme.colors.light,
   borderRadius: 5,
-  h3: {
+  "h3,h4,p": {
     margin: 0,
+  },
+  p: {
+    margin: "0.5em 0px",
   },
   a: {
     textDecoration: "none",
@@ -30,17 +32,11 @@ const CardContent = styled.div({
   justifyContent: "space-between",
 });
 
-const Divider = styled.hr({
-  border: `1px solid ${theme.colors.divider}`,
-  width: "100%",
-});
-
 const ContentContainer = styled.div({
   display: "flex",
   flexDirection: "column",
   alignItems: "flex-start",
   flexGrow: 2,
-  paddingRight: "1em",
 });
 
 export const Card = ({ price, currency, url, image, itemName }) => {
@@ -59,10 +55,10 @@ export const Card = ({ price, currency, url, image, itemName }) => {
           <CardContent>
             <ContentContainer>
               <h3>{itemName}</h3>
-              <Divider />
+              <SubTitle>lorem ipsum </SubTitle>
               {price && formatCurrency(currency, "sv-SE").format(price)}
             </ContentContainer>
-            <BuyButtonRound />
+            {/* <BuyButtonRound /> */}
           </CardContent>
         </a>
       </Link>

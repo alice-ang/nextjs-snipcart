@@ -19,6 +19,7 @@ const StyledHeader = styled.header({
 
 const Items = styled.ul(() => ({
   display: "none",
+  fontSize: "1.2em",
   [Breakpoints.Large]: {
     display: "flex",
   },

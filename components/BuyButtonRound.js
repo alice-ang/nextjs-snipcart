@@ -20,7 +20,7 @@ const RoundButton = styled.button({
     background: theme.colors.dark,
     color: theme.colors.light,
   },
-  [Breakpoints.XL]: {
+  [Breakpoints.Large]: {
     width: 40,
     height: 40,
   },
