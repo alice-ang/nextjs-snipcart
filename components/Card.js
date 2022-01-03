@@ -3,16 +3,18 @@ import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
-import { BuyButton } from "./BuyButton";
 import { theme } from "../styles/styles";
-import { Product } from "./Product";
-
+import { SubTitle } from "./SubTitle";
 const CardContainer = styled.div({
   display: "inline-flex",
   flexDirection: "column",
-  background: "f0f5f6",
-  h3: {
+  background: theme.colors.light,
+  borderRadius: 5,
+  "h3,h4,p": {
     margin: 0,
+  },
+  p: {
+    margin: "0.5em 0px",
   },
   a: {
     textDecoration: "none",
@@ -20,12 +22,21 @@ const CardContainer = styled.div({
   },
 });
 
-const CardContent = styled.div({
-  padding: "1em",
+const CardImage = styled(Image)({
+  borderRadius: "5px 5px 0px 0px",
 });
 
-const Divider = styled.hr({
-  border: `1px solid ${theme.colors.divider}`,
+const CardContent = styled.div({
+  padding: "1em",
+  display: "flex",
+  justifyContent: "space-between",
+});
+
+const ContentContainer = styled.div({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "flex-start",
+  flexGrow: 2,
 });
 
 export const Card = ({ price, currency, url, image, itemName }) => {
@@ -33,7 +44,7 @@ export const Card = ({ price, currency, url, image, itemName }) => {
     <CardContainer>
       <Link href={`/product/${encodeURIComponent(url.current)}`} passHref>
         <a>
-          <Image
+          <CardImage
             src={urlFor(image).url()}
             width="100%"
             height="100%"
@@ -42,9 +53,12 @@ export const Card = ({ price, currency, url, image, itemName }) => {
             alt={itemName}
           />
           <CardContent>
-            <h3>{itemName}</h3>
-            <Divider />
-            {price && formatCurrency(currency, "sv-SE").format(price)}
+            <ContentContainer>
+              <h3>{itemName}</h3>
+              <SubTitle>lorem ipsum </SubTitle>
+              {price && formatCurrency(currency, "sv-SE").format(price)}
+            </ContentContainer>
+            {/* <BuyButtonRound /> */}
           </CardContent>
         </a>
       </Link>

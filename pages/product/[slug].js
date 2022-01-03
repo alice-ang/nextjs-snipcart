@@ -6,9 +6,13 @@ import { urlFor } from "../../utils";
 import { BuyButton } from "../../components/BuyButton";
 import { formatCurrency } from "../../utils";
 import { useRouter } from "next/router";
+import { SubTitle } from "../../components/SubTitle";
 
 const ProductPage = styled.article({
   padding: "1em",
+  h2: {
+    marginBottom: 0,
+  },
 });
 
 const ButtonBar = styled.div({
@@ -43,6 +47,7 @@ export default function Product(props) {
         />
       )}
       <h2>{title}</h2>
+      <SubTitle>lorem ipsum </SubTitle>
       <p>{description}</p>
       <Price>{price && formatCurrency(currency, "sv-SE").format(price)}</Price>
       <ButtonBar>

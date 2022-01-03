@@ -12,6 +12,7 @@ const ProductGrid = styled.div({
   gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
   gridGap: "1em",
   margin: 0,
+  borderRadius: 5,
   [Breakpoints.Large]: {
     gridTemplateColumns: `repeat(auto-fit, minmax(180px, 1fr))`,
     gridGap: "1em",

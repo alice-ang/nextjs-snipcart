@@ -9,6 +9,7 @@ const StyledFooter = styled.div({
   textAlign: "center",
   backgroundColor: theme.colors.footer,
   color: theme.colors.light,
+  padding: "1em 0px",
   p: {
     margin: 0,
     padding: "0px 0.5em",
