@@ -20,32 +20,19 @@ export default function Layout({ children }) {
           rel="stylesheet"
           href="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.css"
         />
-
         <link rel="shortcut icon" href="../public/favicon.ico" />
-      </Head>
-      <LayoutContainer>
-        <Header />
-        <Content>{children}</Content>
-        <Footer />
-      </LayoutContainer>
-      <script
-        async
-        src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
-      ></script>
-
-      <div id="fb-customer-chat" className="fb-customerchat"></div>
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
           var chatbox = document.getElementById('fb-customer-chat');
           chatbox.setAttribute("page_id", "734860390568287");
           chatbox.setAttribute("attribution", "biz_inbox");
             `,
-        }}
-      />
-      <script
-        dangerouslySetInnerHTML={{
-          __html: `
+          }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
           window.fbAsyncInit = function() {
             FB.init({
               xfbml            : true,
@@ -61,8 +48,20 @@ export default function Layout({ children }) {
             fjs.parentNode.insertBefore(js, fjs);
           }(document, 'script', 'facebook-jssdk'));
             `,
-        }}
-      />
+          }}
+        />
+      </Head>
+      <LayoutContainer>
+        <Header />
+        <Content>{children}</Content>
+        <Footer />
+      </LayoutContainer>
+      <script
+        async
+        src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
+      ></script>
+
+      <div id="fb-customer-chat" className="fb-customerchat"></div>
       <div
         id="snipcart"
         data-config-modal-style="side"
