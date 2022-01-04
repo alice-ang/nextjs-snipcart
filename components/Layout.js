@@ -7,6 +7,7 @@ const LayoutContainer = styled.div({});
 
 const Content = styled.main({
   backgroundColor: "#f7f7f7",
+  height: "100vh",
 });
 
 export default function Layout({ children }) {
