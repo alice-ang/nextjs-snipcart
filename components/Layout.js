@@ -32,7 +32,7 @@ export default function Layout({ children }) {
         src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
       ></script>
       <div id="fb-root"></div>
-      <div id="fb-customer-chat" class="fb-customerchat"></div>
+      <div id="fb-customer-chat" className="fb-customerchat"></div>
       <div
         id="snipcart"
         data-config-modal-style="side"
