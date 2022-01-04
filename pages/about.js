@@ -8,7 +8,7 @@ import { TextBlock } from "../components/TextBlock";
 import { theme } from "../styles/styles";
 import { Loader } from "../components/Loader";
 
-export default function Abouy() {
+export default function About() {
   return (
     <div>
       <h1>Om</h1>
