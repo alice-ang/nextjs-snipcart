@@ -22,6 +22,30 @@ export default function Layout({ children }) {
         />
         <link rel="shortcut icon" href="../public/favicon.ico" />
       </Head>
+      <LayoutContainer>
+        <Header />
+        <Content>{children}</Content>
+        <Footer />
+      </LayoutContainer>
+      <script
+        async
+        defer
+        crossOrigin="anonymous"
+        src="https://connect.facebook.net/sv_SE/sdk.js"
+      ></script>
+      <script
+        async
+        src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
+      ></script>
+      <div id="fb-root"></div>
+      <div id="fb-customer-chat" className="fb-customerchat"></div>
+      <div className="fb-customerchat" page_id="734860390568287"></div>
+      <div
+        id="snipcart"
+        data-config-modal-style="side"
+        data-api-key="ZmRjNjc1NTAtYWRlMS00MTk0LWFmMWQtYTlhMDU2ZDA0ODRjNjM3NzUwMjg1MDU2MDEzODMx"
+        hidden
+      ></div>
       <script
         dangerouslySetInnerHTML={{
           __html: `
@@ -48,30 +72,6 @@ export default function Layout({ children }) {
             `,
         }}
       />
-      <LayoutContainer>
-        <Header />
-        <Content>{children}</Content>
-        <Footer />
-      </LayoutContainer>
-      <script
-        async
-        defer
-        crossOrigin="anonymous"
-        src="https://connect.facebook.net/sv_SE/sdk.js"
-      ></script>
-      <script
-        async
-        src="https://cdn.snipcart.com/themes/v3.3.0/default/snipcart.js"
-      ></script>
-      <div id="fb-root"></div>
-      <div id="fb-customer-chat" className="fb-customerchat"></div>
-      <div className="fb-customerchat" page_id="734860390568287"></div>
-      <div
-        id="snipcart"
-        data-config-modal-style="side"
-        data-api-key="ZmRjNjc1NTAtYWRlMS00MTk0LWFmMWQtYTlhMDU2ZDA0ODRjNjM3NzUwMjg1MDU2MDEzODMx"
-        hidden
-      ></div>
     </>
   );
 }
