@@ -65,6 +65,7 @@ export default function Layout({ children }) {
       ></script>
       <div id="fb-root"></div>
       <div id="fb-customer-chat" className="fb-customerchat"></div>
+      <div className="fb-customerchat" page_id="734860390568287"></div>
       <div
         id="snipcart"
         data-config-modal-style="side"
