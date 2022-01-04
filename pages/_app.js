@@ -15,24 +15,10 @@ function MyApp({ Component, pageProps }) {
           <MessengerChat
             pageId="734860390568287"
             language="sv_SE"
-            themeColor={theme.colors.darkPrimary}
+            themeColor={theme.colors.chat}
             height={24}
-            loggedInGreeting="Hello logged in user!"
-            loggedOutGreeting="Hello stranger!"
             autoExpand={true}
             debugMode={false}
-            onMessengerShow={() => {
-              console.log("onMessengerShow");
-            }}
-            onMessengerHide={() => {
-              console.log("onMessengerHide");
-            }}
-            onMessengerDialogShow={() => {
-              console.log("onMessengerDialogShow");
-            }}
-            onMessengerDialogHide={() => {
-              console.log("onMessengerDialogHide");
-            }}
           />
           ;
         </Layout>

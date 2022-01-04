@@ -26,6 +26,7 @@ export const theme = {
     heart: "#f79",
     footer: "#a09891",
     text: "#a3a1a1",
+    chat: "#0A7CFF",
   },
 };
 
