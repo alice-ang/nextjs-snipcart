@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }) {
           <MessengerChat
             pageId="734860390568287"
             language="sv_SE"
-            themeColor={"#F2F3G2"}
+            themeColor={theme.colors.darkPrimary}
             height={24}
             loggedInGreeting="Hello logged in user!"
             loggedOutGreeting="Hello stranger!"
