@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
             language="sv_SE"
             themeColor={theme.colors.chat}
             height={24}
-            autoExpand={false}
+            autoExpand={true}
             debugMode={false}
           />
           ;
