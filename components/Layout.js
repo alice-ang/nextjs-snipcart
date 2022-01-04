@@ -56,7 +56,7 @@ export default function Layout({ children }) {
       <script
         async
         defer
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
         src="https://connect.facebook.net/sv_SE/sdk.js"
       ></script>
       <script
