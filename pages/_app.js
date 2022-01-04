@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
       <ThemeProvider theme={theme}>
         <Layout>
           <Component {...pageProps} />
+          <div className="fb-customerchat" page_id="734860390568287"></div>
         </Layout>
       </ThemeProvider>
     </>
