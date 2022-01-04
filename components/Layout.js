@@ -27,7 +27,7 @@ export default function Layout({ children }) {
         <Header />
         <Content>{children}</Content>
         <Footer />
-        <div class="fb-customerchat" page_id="734860390568287"></div>
+        <div className="fb-customerchat" page_id="734860390568287"></div>
       </LayoutContainer>
       <script
         async
