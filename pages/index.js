@@ -15,13 +15,13 @@ export default function Home() {
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
     const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
       "pageItem": pageItem[]->{..., "products": products[]->}, 
     }`;
 
     client
       .fetch(homeQuery)
+      .then(setLoading(true))
       .then((data) => {
         data.pageItem.map((page) => {
           switch (page._type) {
@@ -61,7 +61,7 @@ export default function Home() {
               _id,
               title = "",
               slug = "",
-              mainImage,
+              images,
               price,
               currency,
               description,
@@ -71,7 +71,7 @@ export default function Home() {
                   key={_id}
                   itemName={title}
                   url={slug}
-                  image={mainImage}
+                  image={images[0]}
                   description={description}
                   id={slug}
                   price={price}
