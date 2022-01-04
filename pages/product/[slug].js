@@ -7,12 +7,24 @@ import { BuyButton } from "../../components/BuyButton";
 import { formatCurrency } from "../../utils";
 import { useRouter } from "next/router";
 import { SubTitle } from "../../components/SubTitle";
+import { Breakpoints, LayoutWidth, wrapperStyle } from "../../styles/styles";
+
+const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
 
 const ProductPage = styled.article({
+  display: "flex",
+  flexDirection: "column",
   padding: "1em",
   h2: {
     marginBottom: 0,
   },
+  [Breakpoints.Medium]: {
+    flexDirection: "row",
+  },
+});
+
+const ProductInformation = styled.div({
+  padding: "1em",
 });
 
 const ButtonBar = styled.div({
@@ -24,45 +36,50 @@ const Price = styled.p({
 });
 
 export default function Product(props) {
+  console.log(props);
   const {
     title = "Missing title",
     price,
     currency,
     description,
-    slug,
     mainImage,
   } = props;
   const router = useRouter();
-
   return (
-    <ProductPage>
-      {props.mainImage && (
-        <Image
-          src={urlFor(props.mainImage).url()}
-          width="100%"
-          height="100%"
-          layout="responsive"
-          objectFit="cover"
-          alt={title}
-        />
-      )}
-      <h2>{title}</h2>
-      <SubTitle>lorem ipsum </SubTitle>
-      <p>{description}</p>
-      <Price>{price && formatCurrency(currency, "sv-SE").format(price)}</Price>
-      <ButtonBar>
-        <BuyButton
-          id={title}
-          price={price}
-          url={router.asPath}
-          description={description}
-          image={urlFor(mainImage).url()}
-          itemName={title}
-        >
-          Köp
-        </BuyButton>
-      </ButtonBar>
-    </ProductPage>
+    <Wrapper width={LayoutWidth}>
+      <ProductPage>
+        {props.mainImage && (
+          <Image
+            src={urlFor(props.mainImage).url()}
+            width="500"
+            height="500"
+            layout="intrinsic"
+            objectFit="cover"
+            alt={title}
+          />
+        )}
+        <ProductInformation>
+          <h2>{title}</h2>
+          <SubTitle>lorem ipsum </SubTitle>
+          <p>{description}</p>
+          <Price>
+            {price && formatCurrency(currency, "sv-SE").format(price)}
+          </Price>
+          <ButtonBar>
+            <BuyButton
+              id={title}
+              price={price}
+              url={router.asPath}
+              description={description}
+              image={urlFor(mainImage).url()}
+              itemName={title}
+            >
+              Köp
+            </BuyButton>
+          </ButtonBar>
+        </ProductInformation>
+      </ProductPage>
+    </Wrapper>
   );
 }
 
@@ -70,6 +87,7 @@ const query = groq`*[_type == "product" && slug.current == $slug][0]{
   title,
   "categories": categories[]->title,
   mainImage,
+  "images": images[]->asset->,
   price,
   currency,
   description
