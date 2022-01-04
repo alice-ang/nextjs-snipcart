@@ -33,7 +33,6 @@ const Price = styled.p({
 });
 
 export default function Product(props) {
-  console.log(props);
   const {
     title = "Missing title",
     price,
