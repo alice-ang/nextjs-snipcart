@@ -7,6 +7,7 @@ import { BuyButton } from "../../components/BuyButton";
 import { formatCurrency } from "../../utils";
 import { useRouter } from "next/router";
 import { SubTitle } from "../../components/SubTitle";
+import { ImageGrid } from "../../components/ImageGrid";
 import { Breakpoints, LayoutWidth, wrapperStyle } from "../../styles/styles";
 
 const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
@@ -27,10 +28,6 @@ const ProductInformation = styled.div({
   padding: "1em",
 });
 
-const ButtonBar = styled.div({
-  display: "flex",
-});
-
 const Price = styled.p({
   fontWeight: "bold",
 });
@@ -42,22 +39,15 @@ export default function Product(props) {
     price,
     currency,
     description,
-    mainImage,
+    images = [],
   } = props;
+
   const router = useRouter();
+
   return (
     <Wrapper width={LayoutWidth}>
       <ProductPage>
-        {props.mainImage && (
-          <Image
-            src={urlFor(props.mainImage).url()}
-            width="500"
-            height="500"
-            layout="intrinsic"
-            objectFit="cover"
-            alt={title}
-          />
-        )}
+        {images && <ImageGrid images={images} />}
         <ProductInformation>
           <h2>{title}</h2>
           <SubTitle>lorem ipsum </SubTitle>
@@ -65,18 +55,16 @@ export default function Product(props) {
           <Price>
             {price && formatCurrency(currency, "sv-SE").format(price)}
           </Price>
-          <ButtonBar>
-            <BuyButton
-              id={title}
-              price={price}
-              url={router.asPath}
-              description={description}
-              image={urlFor(mainImage).url()}
-              itemName={title}
-            >
-              Köp
-            </BuyButton>
-          </ButtonBar>
+          <BuyButton
+            id={title}
+            price={price}
+            url={router.asPath}
+            description={description}
+            image={urlFor(images[0]).url()}
+            itemName={title}
+          >
+            Köp
+          </BuyButton>
         </ProductInformation>
       </ProductPage>
     </Wrapper>
@@ -84,13 +72,8 @@ export default function Product(props) {
 }
 
 const query = groq`*[_type == "product" && slug.current == $slug][0]{
-  title,
-  "categories": categories[]->title,
-  mainImage,
-  "images": images[]->asset->,
-  price,
-  currency,
-  description
+  ...,
+  images
 }`;
 
 Product.getInitialProps = async function (context) {

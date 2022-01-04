@@ -24,9 +24,9 @@ export const Product = ({ product }) => {
         </h2>
       </Link>
       <p>{product.descripiton}</p>
-      {product.mainImage && (
+      {product.images && (
         <Image
-          src={urlFor(product.mainImage).url()}
+          src={urlFor(product.images[0]).url()}
           layout="fill"
           objectFit="cover"
           alt={product.title}

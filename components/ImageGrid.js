@@ -4,30 +4,49 @@ import Image from "next/image";
 import { urlFor } from "../utils";
 import { Breakpoints } from "../styles/styles";
 
-const ImageContainer = styled.div({});
+const MainImage = styled.div`
+  grid-area: main;
+`;
+const ImageContainer = styled.div`
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-areas:
+    "main main main"
+    "main main main"
+    "first second third";
+`;
 
-const MainImage = styled(Image)({});
-
-export const ImageGrid = ({ mainImage, images }) => {
-  const [mainUrl, setMainUrl] = useState("");
+export const ImageGrid = ({ images }) => {
+  const [mainUrl, setMainUrl] = useState(images[0]);
 
   return (
     <ImageContainer>
-      <MainImage
-        src={urlFor(mainImage).url()}
-        layout="fill"
-        objectFit="cover"
-        priority
-        alt="alt"
-      />
+      <MainImage>
+        <Image
+          src={urlFor(mainUrl).url()}
+          width="600"
+          height="600"
+          layout="intrinsic"
+          objectFit="cover"
+          alt="alt"
+        />
+      </MainImage>
+
       {images.map((image) => {
         return (
           <Image
+            key={image._key}
             src={urlFor(image).url()}
-            layout="fill"
+            width="100%"
+            height="100%"
+            layout="responsive"
             objectFit="cover"
-            priority
             alt="alt"
+            onClick={() => {
+              setMainUrl(image);
+            }}
           />
         );
       })}
