@@ -7,9 +7,9 @@ const HeroContainer = styled.div({
   display: "block",
   position: "relative",
   textAlign: "center",
-  height: "40vh",
+  height: "35vh",
   [Breakpoints.Large]: {
-    height: "50vh",
+    height: "40vh",
   },
 });
 
