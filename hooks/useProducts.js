@@ -5,7 +5,10 @@ import client from "../client";
 export const useProducts = () => {
   const [products, setProducts] = useState(null);
   useEffect(() => {
-    const productsQuery = groq`*[_type == "product"]`;
+    const productsQuery = groq`*[_type == "product"]{
+      ...,
+      categories[]->
+    }`;
     client
       .fetch(productsQuery)
       .then((data) => setProducts(data))

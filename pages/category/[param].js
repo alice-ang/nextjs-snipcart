@@ -60,6 +60,7 @@ export default function Category() {
               slug && (
                 <Card
                   key={_id}
+                  subtitle={productCategory.title}
                   itemName={title}
                   url={slug}
                   images={images}

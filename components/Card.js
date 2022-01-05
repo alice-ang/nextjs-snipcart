@@ -41,7 +41,14 @@ const ContentContainer = styled.div({
   flexGrow: 2,
 });
 
-export const Card = ({ price, currency, url, images = [], itemName }) => {
+export const Card = ({
+  price,
+  currency,
+  url,
+  images = [],
+  itemName,
+  subtitle,
+}) => {
   const [mainUrl, setMainUrl] = useState(images[0]);
   return (
     <CardContainer>
@@ -60,7 +67,7 @@ export const Card = ({ price, currency, url, images = [], itemName }) => {
           <CardContent>
             <ContentContainer>
               <h3>{itemName}</h3>
-              <SubTitle>lorem ipsum </SubTitle>
+              <SubTitle>{subtitle} </SubTitle>
               {price && formatCurrency(currency, "sv-SE").format(price)}
             </ContentContainer>
             {/* <BuyButtonRound /> */}

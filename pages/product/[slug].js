@@ -41,6 +41,7 @@ export default function Product(props) {
     price,
     currency,
     description,
+    categories = [],
     images = [],
   } = props;
 
@@ -52,7 +53,7 @@ export default function Product(props) {
         {images && <ImageGrid images={images} />}
         <ProductInformation>
           <h2>{title}</h2>
-          <SubTitle>lorem ipsum </SubTitle>
+          <SubTitle>{categories[0].title}</SubTitle>
           <p>{description}</p>
           <Price>
             {price && formatCurrency(currency, "sv-SE").format(price)}
@@ -75,6 +76,7 @@ export default function Product(props) {
 
 const query = groq`*[_type == "product" && slug.current == $slug][0]{
   ...,
+  "categories": categories[]->,
   images
 }`;
 
