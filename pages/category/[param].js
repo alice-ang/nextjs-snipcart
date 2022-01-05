@@ -54,12 +54,14 @@ export default function Category() {
               slug = "",
               images,
               price,
+              categories = [],
               currency,
               description,
             }) =>
               slug && (
                 <Card
                   key={_id}
+                  subtitle={productCategory.title}
                   itemName={title}
                   url={slug}
                   images={images}

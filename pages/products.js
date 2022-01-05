@@ -38,12 +38,14 @@ export default function Products() {
               slug = "",
               images,
               price,
+              categories = [],
               currency,
               description,
             }) =>
               slug && (
                 <Card
                   key={_id}
+                  subtitle={categories[0].title}
                   itemName={title}
                   url={slug}
                   images={images}
