@@ -54,7 +54,6 @@ export default function Category() {
               slug = "",
               images,
               price,
-              categories = [],
               currency,
               description,
             }) =>
