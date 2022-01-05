@@ -7,6 +7,10 @@ const GridContainer = styled.div({
   padding: "1em",
 });
 
+const GridTitle = styled.h2({
+  textTransform: "capitalize",
+});
+
 const ProductGrid = styled.div({
   display: "grid",
   gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
@@ -27,7 +31,7 @@ export const Grid = ({ title, children }) => {
   return (
     <GridContainer>
       <Wrapper width={LayoutWidth}>
-        <h2>{title}</h2>
+        <GridTitle>{title}</GridTitle>
         <ProductGrid>{children}</ProductGrid>
       </Wrapper>
     </GridContainer>

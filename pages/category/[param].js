@@ -1,30 +1,25 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import groq from "groq";
-import Image from "next/image";
 import client from "../../client";
-import { urlFor } from "../../utils";
 import { Loader } from "../../components/Loader";
-import { formatCurrency } from "../../utils";
+import { Card } from "../../components/Card";
+import { Grid } from "../../components/Grid";
 import { useRouter } from "next/router";
 
 const ProductPage = styled.article({
   padding: "1em",
 });
 
-const ButtonBar = styled.div({
-  display: "flex",
-});
-
-const Price = styled.p({
-  fontWeight: "bold",
+const CategoryTitle = styled.h1({
+  textTransform: "capitalize",
 });
 
 export default function Category() {
   const [productCategory, setProductCategory] = useState({});
   const [isLoading, setLoading] = useState(false);
-
   const router = useRouter();
+  const { products } = productCategory;
 
   const getByCategory = async (router) => {
     const cat = router.query.param;
@@ -50,9 +45,35 @@ export default function Category() {
 
   return (
     <ProductPage>
-      {isLoading && <Loader />}
-
-      {productCategory && <h1>{productCategory.title}</h1>}
+      {products ? (
+        <Grid title={productCategory.title}>
+          {products.map(
+            ({
+              _id,
+              title = "",
+              slug = "",
+              images,
+              price,
+              currency,
+              description,
+            }) =>
+              slug && (
+                <Card
+                  key={_id}
+                  itemName={title}
+                  url={slug}
+                  images={images}
+                  description={description}
+                  id={slug}
+                  price={price}
+                  currency={currency}
+                />
+              )
+          )}
+        </Grid>
+      ) : (
+        <Loader />
+      )}
     </ProductPage>
   );
 }
