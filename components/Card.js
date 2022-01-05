@@ -1,10 +1,12 @@
 import styled from "styled-components";
+import { useState } from "react";
 import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
 import { theme } from "../styles/styles";
 import { SubTitle } from "./SubTitle";
+
 const CardContainer = styled.div({
   display: "inline-flex",
   flexDirection: "column",
@@ -39,13 +41,16 @@ const ContentContainer = styled.div({
   flexGrow: 2,
 });
 
-export const Card = ({ price, currency, url, image, itemName }) => {
+export const Card = ({ price, currency, url, images = [], itemName }) => {
+  const [mainUrl, setMainUrl] = useState(images[0]);
   return (
     <CardContainer>
       <Link href={`/product/${encodeURIComponent(url.current)}`} passHref>
         <a>
           <CardImage
-            src={urlFor(image).url()}
+            onMouseEnter={() => setMainUrl(images[1])}
+            onMouseLeave={() => setMainUrl(images[0])}
+            src={urlFor(mainUrl).url()}
             width="100%"
             height="100%"
             layout="responsive"

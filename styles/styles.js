@@ -39,7 +39,7 @@ export const Breakpoints = {
 };
 
 export const wrapperStyle = ({ width }) => css`
-  ${Breakpoints.XXL} {
+  ${Breakpoints.XL} {
     margin: 0 auto;
     width: ${width ?? undefined};
   }

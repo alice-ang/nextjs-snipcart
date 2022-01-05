@@ -44,7 +44,7 @@ export default function Products() {
                   key={_id}
                   itemName={title}
                   url={slug}
-                  image={images[0]}
+                  images={images}
                   description={description}
                   id={slug}
                   price={price}

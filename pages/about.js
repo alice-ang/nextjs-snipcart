@@ -4,8 +4,7 @@ import groq from "groq";
 import client from "../client";
 import { MessengerChat } from "react-messenger-chat-plugin";
 
-import { Grid } from "../components/Grid";
-import { Card } from "../components/Card";
+import { Loader } from "../components/Loader";
 import { TextBlock } from "../components/TextBlock";
 import { theme } from "../styles/styles";
 
@@ -37,8 +36,10 @@ export default function About() {
       .then(setLoading(false))
       .catch(console.error);
   }, []);
+
   return (
     <div>
+      {isLoading && <Loader />}
       {hero && <Hero image={hero.heroImage} />}
       {textBlock && <TextBlock color={theme.colors.accent} block={textBlock} />}
       <MessengerChat
