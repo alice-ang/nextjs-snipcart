@@ -50,9 +50,7 @@ export default function Home() {
           <p>{hero.subtitle}</p>
         </Hero>
       )}
-      {textBlock && (
-        <TextBlock color={theme.colors.accent} text={textBlock.text} />
-      )}
+      {textBlock && <TextBlock color={theme.colors.accent} block={textBlock} />}
 
       {featured && (
         <Grid title={featured.title}>
@@ -71,7 +69,7 @@ export default function Home() {
                   key={_id}
                   itemName={title}
                   url={slug}
-                  image={images[0]}
+                  images={images}
                   description={description}
                   id={slug}
                   price={price}

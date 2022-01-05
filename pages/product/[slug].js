@@ -25,7 +25,10 @@ const ProductPage = styled.article({
 });
 
 const ProductInformation = styled.div({
-  padding: "1em",
+  width: "100%",
+  [Breakpoints.Medium]: {
+    padding: "1em",
+  },
 });
 
 const Price = styled.p({

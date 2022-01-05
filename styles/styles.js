@@ -3,14 +3,14 @@ import { styled, css } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
 body,html {
-margin: 0;
-padding: 0;
-box-sizing: border-box;
-font-family: 'Lato', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
 }
 
 h1, h2, h3, h4 {
-font-family: 'Prata', serif;
+  font-family: 'Prata', serif;
 }
 `;
 
@@ -39,7 +39,7 @@ export const Breakpoints = {
 };
 
 export const wrapperStyle = ({ width }) => css`
-  ${Breakpoints.XXL} {
+  ${Breakpoints.XL} {
     margin: 0 auto;
     width: ${width ?? undefined};
   }

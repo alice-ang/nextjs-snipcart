@@ -18,6 +18,9 @@ export default function Products() {
       .then((data) => setHero(data))
       .catch(console.error);
   }, []);
+
+  console.log(products);
+
   return (
     <>
       {hero && (
@@ -26,7 +29,6 @@ export default function Products() {
           <p>{hero.paragraph}</p>
         </Hero>
       )}
-
       {products ? (
         <Grid title="Produkter">
           {products.map(
@@ -44,7 +46,7 @@ export default function Products() {
                   key={_id}
                   itemName={title}
                   url={slug}
-                  image={images[0]}
+                  images={images}
                   description={description}
                   id={slug}
                   price={price}

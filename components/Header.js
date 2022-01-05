@@ -100,7 +100,7 @@ const MobileItems = styled.ul(() => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    fontSize: "1.5rem",
+    fontSize: "1.1rem",
     padding: " 1em",
     borderBottom: `1px solid ${theme.colors.divider}`,
     a: {

@@ -2,6 +2,7 @@ import styled from "styled-components";
 import BlockContent from "@sanity/block-content-to-react";
 import sanityClient from "../client";
 import { LayoutWidth, wrapperStyle } from "../styles/styles";
+import { serializer } from "../utils";
 
 const Block = styled.div(({ color }) => ({
   display: "flex",
@@ -12,14 +13,15 @@ const Block = styled.div(({ color }) => ({
 
 const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
 
-export const TextBlock = ({ color, text }) => {
+export const TextBlock = ({ block, color }) => {
   return (
     <Block color={color}>
       <Wrapper width={LayoutWidth}>
         <BlockContent
-          blocks={text}
+          blocks={block.text}
           projectId={sanityClient.projectId}
           dataset={sanityClient.dataset}
+          serializers={serializer}
         />
       </Wrapper>
     </Block>
