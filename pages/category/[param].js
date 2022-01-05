@@ -21,21 +21,38 @@ const Price = styled.p({
 });
 
 export default function Category() {
-  const [categories, setCategories] = useState(null);
-
-  useEffect(() => {
-    const query = groq`*[_type == "product"]`;
-    client
-      .fetch(query)
-      .then((data) => setCategories(data))
-      .catch(console.error);
-  }, []);
+  const [productCategory, setProductCategory] = useState({});
+  const [isLoading, setLoading] = useState(false);
 
   const router = useRouter();
-  console.log(categories);
+
+  const getByCategory = async (router) => {
+    const cat = router.query.param;
+    const query = groq`*[_type=="category" && title == $cat][0]{
+      ...,
+      "products": *[ _type == "product" && references(^._id) ]
+
+    }`;
+
+    const result = await client
+      .fetch(query, { cat })
+      .then(setLoading(true))
+      .then((data) => setProductCategory(data))
+      .then(setLoading(false))
+      .catch(console.error);
+
+    return result;
+  };
+
+  useEffect(() => {
+    getByCategory(router);
+  }, [router]);
+
   return (
     <ProductPage>
-      <Loader />
+      {isLoading && <Loader />}
+
+      {productCategory && <h1>{productCategory.title}</h1>}
     </ProductPage>
   );
 }

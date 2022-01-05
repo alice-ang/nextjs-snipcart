@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import groq from "groq";
 import client from "../client";
 import { MessengerChat } from "react-messenger-chat-plugin";
-
 import { Loader } from "../components/Loader";
 import { TextBlock } from "../components/TextBlock";
 import { theme } from "../styles/styles";
