@@ -10,7 +10,7 @@ const MainImage = styled.div`
 `;
 const ImageContainer = styled.div`
   display: grid;
-  grid-gap: 1rem;
+  grid-gap: 0.3rem;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr;
   grid-template-areas:
@@ -18,6 +18,9 @@ const ImageContainer = styled.div`
     "main main main"
     "first second third";
   cursor: pointer;
+  ${Breakpoints.Large}: {
+    grid-gap: 1rem;
+  }
 `;
 
 export const ImageGrid = ({ images }) => {
@@ -46,9 +49,7 @@ export const ImageGrid = ({ images }) => {
             layout="responsive"
             objectFit="cover"
             alt="alt"
-            onClick={() => {
-              setMainUrl(image);
-            }}
+            onClick={() => setMainUrl(image)}
           />
         );
       })}
