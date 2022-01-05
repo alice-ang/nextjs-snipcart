@@ -50,9 +50,7 @@ export default function Home() {
           <p>{hero.subtitle}</p>
         </Hero>
       )}
-      {textBlock && (
-        <TextBlock color={theme.colors.accent} text={textBlock.text} />
-      )}
+      {textBlock && <TextBlock color={theme.colors.accent} block={textBlock} />}
 
       {featured && (
         <Grid title={featured.title}>

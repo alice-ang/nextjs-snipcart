@@ -9,7 +9,7 @@ const HeroContainer = styled.div({
   textAlign: "center",
   height: "40vh",
   [Breakpoints.Large]: {
-    height: "70vh",
+    height: "50vh",
   },
 });
 
@@ -51,7 +51,7 @@ export const Hero = ({ image, children }) => {
         priority
         alt="alt"
       />
-      <HeroText> {children}</HeroText>
+      {children && <HeroText> {children}</HeroText>}
       <Overlay />
     </HeroContainer>
   );

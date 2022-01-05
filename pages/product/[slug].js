@@ -26,6 +26,7 @@ const ProductPage = styled.article({
 
 const ProductInformation = styled.div({
   padding: "1em",
+  width: "100%",
 });
 
 const Price = styled.p({

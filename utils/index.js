@@ -1,6 +1,7 @@
 import client from "../client";
 import imageUrlBuilder from "@sanity/image-url";
 import { Breakpoints } from "../styles/styles";
+import Image from "next/image";
 
 export const formatCurrency = (currency, locale) => {
   const formatter = new Intl.NumberFormat(locale, {
@@ -25,10 +26,26 @@ export const variables = {
 
 export const staticMenuItems = [
   { url: "/", name: "Hem" },
+  { url: "/about", name: "Om företaget" },
   { url: "/products", name: "Alla" },
 ];
 
 export const currentYear = () => {
   const date = new Date();
   return date.getFullYear();
+};
+
+export const serializer = {
+  types: {
+    image: (props) => (
+      <Image
+        src={urlFor(props.node.asset).url()}
+        width="100%"
+        height="100%"
+        layout="responsive"
+        objectFit="contain"
+        alt="alt"
+      />
+    ),
+  },
 };

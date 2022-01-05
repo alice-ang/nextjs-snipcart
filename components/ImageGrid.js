@@ -6,6 +6,7 @@ import { Breakpoints } from "../styles/styles";
 
 const MainImage = styled.div`
   grid-area: main;
+  cursor: default;
 `;
 const ImageContainer = styled.div`
   display: grid;
@@ -16,6 +17,7 @@ const ImageContainer = styled.div`
     "main main main"
     "main main main"
     "first second third";
+  cursor: pointer;
 `;
 
 export const ImageGrid = ({ images }) => {
