@@ -26,7 +26,7 @@ export const variables = {
 
 export const staticMenuItems = [
   { url: "/", name: "Hem" },
-  { url: "/about", name: "Om företaget" },
+  { url: "/about", name: "Om " },
   { url: "/products", name: "Alla" },
 ];
 
@@ -43,7 +43,7 @@ export const serializer = {
         width="100%"
         height="100%"
         layout="responsive"
-        objectFit="contain"
+        objectFit="cover"
         alt="alt"
       />
     ),
