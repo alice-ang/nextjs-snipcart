@@ -28,8 +28,8 @@ export const ImageGrid = ({ images }) => {
       <MainImage>
         <Image
           src={urlFor(mainUrl).url()}
-          width="600"
-          height="600"
+          width="1000"
+          height="800"
           layout="intrinsic"
           objectFit="cover"
           alt="alt"
