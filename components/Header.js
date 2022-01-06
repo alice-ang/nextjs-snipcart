@@ -13,6 +13,7 @@ import { Loader } from "./Loader";
 
 const HeaderWrapper = styled.header({
   a: {
+    width: "100%",
     textDecoration: "none",
     color: theme.colors.dark,
     textTransform: "capitalize",
@@ -114,8 +115,8 @@ const MobileItems = styled.ul(() => ({
     fontWeight: "bold",
     borderBottom: `1px solid ${theme.colors.divider}`,
     a: {
+      width: "100%",
       textDecoration: "none",
-      width: "fit-content",
     },
   },
 }));
@@ -230,7 +231,11 @@ export default function Header() {
             {toggle && (
               <MobileHeader isOpen={toggle}>
                 <HeaderTop>
-                  <CloseButton size={16} onClick={() => setToggle(!toggle)} />
+                  <CloseButton
+                    size={16}
+                    color={theme.colors.footer}
+                    onClick={() => setToggle(!toggle)}
+                  />
                 </HeaderTop>
 
                 {menuItems && (
