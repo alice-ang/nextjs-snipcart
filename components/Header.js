@@ -58,6 +58,7 @@ const Logo = styled.div({
 const HeaderTitle = styled.h1({
   padding: 0,
   fontSize: 24,
+  textTransform: "lowercase",
 });
 
 const MobileHeader = styled.div(({ isOpen }) => ({
@@ -256,7 +257,7 @@ export default function Header() {
       {toggleDropDown && subMenu && (
         <DropDownContent onMouseLeave={() => setToggleDropDown(false)}>
           {subMenu.map((sub) => (
-            <DropDownItem>
+            <DropDownItem key={sub._id}>
               <Link
                 href={{
                   pathname: "/category/[param]",
