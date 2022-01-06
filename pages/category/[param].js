@@ -19,11 +19,10 @@ export default function Category() {
   const [productCategory, setProductCategory] = useState({});
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
-  const { products } = productCategory;
 
   const getByCategory = async (router) => {
     const cat = router.query.param;
-    const query = groq`*[_type=="category" && title == $cat][0]{
+    const query = groq`*[_type=="category" && title == $cat || _type=="subCategory" && name == $cat ][0]{
       ...,
       "products": *[ _type == "product" && references(^._id) ]
 
@@ -43,11 +42,15 @@ export default function Category() {
     getByCategory(router);
   }, [router]);
 
+  if (!productCategory) {
+    return null;
+  }
+
   return (
     <ProductPage>
-      {products ? (
+      {productCategory.products ? (
         <Grid title={productCategory.title}>
-          {products.map(
+          {productCategory.products.map(
             ({
               _id,
               title = "",
@@ -60,7 +63,7 @@ export default function Category() {
               slug && (
                 <Card
                   key={_id}
-                  subtitle={productCategory.title}
+                  subtitle={productCategory.title ?? productCategory.name}
                   itemName={title}
                   url={slug}
                   images={images}
