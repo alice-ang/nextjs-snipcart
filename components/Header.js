@@ -143,7 +143,7 @@ const DropDownItem = styled.p({
 });
 
 const MobileSubMenu = styled.ul({
-  backgroundColor: "#f1f1f1",
+  backgroundColor: "#f7f7f7",
   padding: 0,
   li: {
     paddingLeft: "1em",
@@ -156,6 +156,8 @@ export default function Header() {
   const [toggleDropDown, setToggleDropDown] = useState(false);
   const [toggleMobileDropDown, setMobileToggleDropDown] = useState(false);
   const [subMenu, setSubMenu] = useState();
+  const [mobileIndex, setMobileIndex] = useState(null);
+
   const menuItems = useMenuItems();
 
   return (
@@ -248,7 +250,7 @@ export default function Header() {
                             key={index}
                             onClick={() => {
                               setMobileToggleDropDown(!toggleMobileDropDown),
-                                setSubMenu(item.subCategories);
+                                setMobileIndex(index);
                             }}
                           >
                             <Link
@@ -265,12 +267,13 @@ export default function Header() {
                               <AiOutlineArrowRight size={"1.5rem"} />
                             )}
                           </li>
-                          <MobileSubMenu>
-                            {toggleMobileDropDown &&
-                              item.subCategories.map((sub) => {
+                          {toggleMobileDropDown && mobileIndex === index ? (
+                            <MobileSubMenu>
+                              {item.subCategories.map((sub) => {
                                 return <li>{sub.name}</li>;
                               })}
-                          </MobileSubMenu>
+                            </MobileSubMenu>
+                          ) : null}
                         </>
                       );
                     })}
