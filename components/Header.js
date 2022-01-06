@@ -145,7 +145,7 @@ export default function Header() {
   const menuItems = useMenuItems();
 
   return (
-    <HeaderWrapper>
+    <HeaderWrapper onMouseLeave={() => setToggleDropDown(false)}>
       <StyledHeader>
         {menuItems ? (
           <>
@@ -252,10 +252,13 @@ export default function Header() {
           <Loader />
         )}
       </StyledHeader>
-      {toggleDropDown && subMenu && (
-        <DropDownContent onMouseLeave={() => console.log("hej")}>
+      {toggleDropDown && (
+        <DropDownContent>
           {subMenu.map((sub) => (
-            <DropDownItem key={sub.name}>
+            <DropDownItem
+              key={sub.name}
+              onClick={() => setToggleDropDown(false)}
+            >
               <Link
                 href={{
                   pathname: "/category/[param]",
