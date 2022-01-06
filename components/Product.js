@@ -3,15 +3,12 @@ import { formatCurrency } from "../utils";
 import styled from "styled-components";
 import Link from "next/link";
 import { urlFor } from "../utils";
-import { useRouter } from "next/router";
 
 const ProductContainer = styled.div({
   position: "relative",
 });
 
 export const Product = ({ product }) => {
-  const router = useRouter();
-
   return (
     <ProductContainer>
       <Link
