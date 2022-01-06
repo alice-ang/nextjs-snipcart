@@ -7,11 +7,13 @@ import { ImCross } from "react-icons/im";
 import { Breakpoints, theme } from "../styles/styles";
 import { useMenuItems } from "../hooks/useMenuItems";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
 import { DropDownContent } from "./DropDownContent";
 import { Loader } from "./Loader";
 
 const HeaderWrapper = styled.header({
   a: {
+    width: "100%",
     textDecoration: "none",
     color: theme.colors.dark,
     textTransform: "capitalize",
@@ -92,6 +94,7 @@ const CloseButton = styled(ImCross)({
   fontSize: 36,
   color: theme.colors.dark,
 });
+
 const MobileItems = styled.ul(() => ({
   display: "block",
   [Breakpoints.Large]: {
@@ -109,8 +112,10 @@ const MobileItems = styled.ul(() => ({
     alignItems: "center",
     fontSize: "1.1rem",
     padding: " 1em",
+    fontWeight: "bold",
     borderBottom: `1px solid ${theme.colors.divider}`,
     a: {
+      width: "100%",
       textDecoration: "none",
     },
   },
@@ -138,10 +143,22 @@ const DropDownItem = styled.p({
   fontWeight: "bold",
 });
 
+const MobileSubMenu = styled.ul({
+  backgroundColor: "#f7f7f7",
+  padding: 0,
+  li: {
+    paddingLeft: "1em",
+    fontWeight: "unset",
+  },
+});
+
 export default function Header() {
   const [toggle, setToggle] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [toggleMobileDropDown, setMobileToggleDropDown] = useState(false);
   const [subMenu, setSubMenu] = useState();
+  const [mobileIndex, setMobileIndex] = useState(null);
+
   const menuItems = useMenuItems();
 
   return (
@@ -214,7 +231,11 @@ export default function Header() {
             {toggle && (
               <MobileHeader isOpen={toggle}>
                 <HeaderTop>
-                  <CloseButton size={16} onClick={() => setToggle(!toggle)} />
+                  <CloseButton
+                    size={16}
+                    color={theme.colors.footer}
+                    onClick={() => setToggle(!toggle)}
+                  />
                 </HeaderTop>
 
                 {menuItems && (
@@ -229,18 +250,50 @@ export default function Header() {
                     })}
                     {menuItems.map((item, index) => {
                       return (
-                        <li key={index} onClick={() => setToggle(!toggle)}>
-                          <Link
-                            href={{
-                              pathname: "/category/[param]",
-                              query: { param: item.title },
+                        <>
+                          <li
+                            key={index}
+                            onClick={() => {
+                              setMobileToggleDropDown(!toggleMobileDropDown),
+                                setMobileIndex(index);
                             }}
-                            passHref
                           >
-                            <a>{item.title}</a>
-                          </Link>
-                          <AiOutlineArrowRight size={"1.5rem"} />
-                        </li>
+                            <Link
+                              href={{
+                                pathname: "/category/[param]",
+                                query: { param: item.title },
+                              }}
+                            >
+                              {item.title}
+                            </Link>
+                            {item.subCategories ? (
+                              <BsChevronDown size={"1rem"} />
+                            ) : (
+                              <AiOutlineArrowRight size={"1.5rem"} />
+                            )}
+                          </li>
+                          {toggleMobileDropDown && mobileIndex === index ? (
+                            <MobileSubMenu>
+                              {item.subCategories.map((sub) => {
+                                return (
+                                  <li
+                                    key={sub._id}
+                                    onClick={() => setToggle(!toggle)}
+                                  >
+                                    <Link
+                                      href={{
+                                        pathname: "/category/[param]",
+                                        query: { param: sub.name },
+                                      }}
+                                    >
+                                      {sub.name}
+                                    </Link>
+                                  </li>
+                                );
+                              })}
+                            </MobileSubMenu>
+                          ) : null}
+                        </>
                       );
                     })}
                   </MobileItems>
