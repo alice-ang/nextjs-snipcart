@@ -16,7 +16,7 @@ export default function Home() {
 
   useEffect(() => {
     const homeQuery = groq` *[_type == "page" && name == 'Homepage' ][0]{
-      "pageItem": pageItem[]->{..., "products": products[]->}, 
+      "pageItem": pageItem[]->{..., "products": products[]->{..., "categories": categories[]->}}, 
     }`;
 
     client

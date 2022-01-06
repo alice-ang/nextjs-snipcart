@@ -161,10 +161,8 @@ export default function Header() {
             <Items>
               {staticMenuItems.map((item) => {
                 return (
-                  <li key={item._id}>
-                    <Link href={item.url} key={item.name}>
-                      {item.name}
-                    </Link>
+                  <li key={item.url}>
+                    <Link href={item.url}>{item.name}</Link>
                   </li>
                 );
               })}
@@ -229,9 +227,9 @@ export default function Header() {
                         </li>
                       );
                     })}
-                    {menuItems.map((item) => {
+                    {menuItems.map((item, index) => {
                       return (
-                        <li key={item._id} onClick={() => setToggle(!toggle)}>
+                        <li key={index} onClick={() => setToggle(!toggle)}>
                           <Link
                             href={{
                               pathname: "/category/[param]",
@@ -255,9 +253,9 @@ export default function Header() {
         )}
       </StyledHeader>
       {toggleDropDown && subMenu && (
-        <DropDownContent onMouseLeave={() => setToggleDropDown(false)}>
+        <DropDownContent onMouseLeave={() => console.log("hej")}>
           {subMenu.map((sub) => (
-            <DropDownItem key={sub._id}>
+            <DropDownItem key={sub.name}>
               <Link
                 href={{
                   pathname: "/category/[param]",

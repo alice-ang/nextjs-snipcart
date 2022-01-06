@@ -12,14 +12,14 @@ export default function Products() {
   const [hero, setHero] = useState(null);
 
   useEffect(() => {
-    const heroQuery = groq` *[_type == "hero" && name == 'Products' ][0]`;
+    const heroQuery = groq` *[_type == "hero" && name == 'Products' ][0]{
+      ..., "categories": categories[]->
+    }`;
     client
       .fetch(heroQuery)
       .then((data) => setHero(data))
       .catch(console.error);
   }, []);
-
-  console.log(products);
 
   return (
     <>
