@@ -10,7 +10,18 @@ import { AiOutlineArrowRight } from "react-icons/ai";
 import { DropDownContent } from "./DropDownContent";
 import { Loader } from "./Loader";
 
-const StyledHeader = styled.header({
+const HeaderWrapper = styled.header({
+  a: {
+    textDecoration: "none",
+    color: theme.colors.dark,
+    textTransform: "capitalize",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
+});
+
+const StyledHeader = styled.div({
   display: "flex",
   paddingTop: 20,
   paddingBottom: 20,
@@ -30,14 +41,6 @@ const Items = styled.ul(() => ({
   padding: 0,
   li: {
     padding: "0px 1em",
-  },
-  a: {
-    textDecoration: "none",
-    color: theme.colors.dark,
-    textTransform: "capitalize",
-    "&:hover": {
-      textDecoration: "underline",
-    },
   },
 }));
 
@@ -128,6 +131,12 @@ const Badge = styled.span({
   fontWeight: "bold",
 });
 
+const DropDownItem = styled.p({
+  margin: 0,
+  padding: "0px 1em",
+  fontWeight: "bold",
+});
+
 export default function Header() {
   const [toggle, setToggle] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(false);
@@ -135,7 +144,7 @@ export default function Header() {
   const menuItems = useMenuItems();
 
   return (
-    <>
+    <HeaderWrapper>
       <StyledHeader>
         {menuItems ? (
           <>
@@ -245,12 +254,22 @@ export default function Header() {
         )}
       </StyledHeader>
       {toggleDropDown && subMenu && (
-        <div onMouseLeave={() => setToggleDropDown(false)}>
+        <DropDownContent onMouseLeave={() => setToggleDropDown(false)}>
           {subMenu.map((sub) => (
-            <DropDownContent>{sub.name}</DropDownContent>
+            <DropDownItem>
+              <Link
+                href={{
+                  pathname: "/category/[param]",
+                  query: { param: sub.name.toLowerCase() },
+                }}
+                passHref
+              >
+                <a>{sub.name}</a>
+              </Link>
+            </DropDownItem>
           ))}
-        </div>
+        </DropDownContent>
       )}
-    </>
+    </HeaderWrapper>
   );
 }

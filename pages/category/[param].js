@@ -19,7 +19,6 @@ export default function Category() {
   const [productCategory, setProductCategory] = useState({});
   const [isLoading, setLoading] = useState(false);
   const router = useRouter();
-  const { products } = productCategory;
 
   const getByCategory = async (router) => {
     const cat = router.query.param;
@@ -43,11 +42,15 @@ export default function Category() {
     getByCategory(router);
   }, [router]);
 
+  if (!productCategory) {
+    return null;
+  }
+
   return (
     <ProductPage>
-      {products ? (
+      {productCategory.products ? (
         <Grid title={productCategory.title}>
-          {products.map(
+          {productCategory.products.map(
             ({
               _id,
               title = "",
