@@ -270,7 +270,7 @@ export default function Header() {
                           {toggleMobileDropDown && mobileIndex === index ? (
                             <MobileSubMenu>
                               {item.subCategories.map((sub) => {
-                                return <li>{sub.name}</li>;
+                                return <li key={sub._id}>{sub.name}</li>;
                               })}
                             </MobileSubMenu>
                           ) : null}
