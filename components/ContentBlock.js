@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
 import { urlFor } from "../utils";
-import { Breakpoints } from "../styles/styles";
 import { TextBlock } from "./TextBlock";
 
 const ContentWrapper = styled.div({

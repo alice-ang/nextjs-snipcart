@@ -7,6 +7,7 @@ import { ImCross } from "react-icons/im";
 import { Breakpoints, theme } from "../styles/styles";
 import { useMenuItems } from "../hooks/useMenuItems";
 import { AiOutlineArrowRight } from "react-icons/ai";
+import { BsChevronDown } from "react-icons/bs";
 import { DropDownContent } from "./DropDownContent";
 import { Loader } from "./Loader";
 
@@ -92,6 +93,7 @@ const CloseButton = styled(ImCross)({
   fontSize: 36,
   color: theme.colors.dark,
 });
+
 const MobileItems = styled.ul(() => ({
   display: "block",
   [Breakpoints.Large]: {
@@ -109,9 +111,11 @@ const MobileItems = styled.ul(() => ({
     alignItems: "center",
     fontSize: "1.1rem",
     padding: " 1em",
+    fontWeight: "bold",
     borderBottom: `1px solid ${theme.colors.divider}`,
     a: {
       textDecoration: "none",
+      width: "fit-content",
     },
   },
 }));
@@ -138,9 +142,19 @@ const DropDownItem = styled.p({
   fontWeight: "bold",
 });
 
+const MobileSubMenu = styled.ul({
+  backgroundColor: "#f1f1f1",
+  padding: 0,
+  li: {
+    paddingLeft: "1em",
+    fontWeight: "unset",
+  },
+});
+
 export default function Header() {
   const [toggle, setToggle] = useState(false);
   const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [toggleMobileDropDown, setMobileToggleDropDown] = useState(false);
   const [subMenu, setSubMenu] = useState();
   const menuItems = useMenuItems();
 
@@ -229,18 +243,35 @@ export default function Header() {
                     })}
                     {menuItems.map((item, index) => {
                       return (
-                        <li key={index} onClick={() => setToggle(!toggle)}>
-                          <Link
-                            href={{
-                              pathname: "/category/[param]",
-                              query: { param: item.title },
+                        <>
+                          <li
+                            key={index}
+                            onClick={() => {
+                              setMobileToggleDropDown(!toggleMobileDropDown),
+                                setSubMenu(item.subCategories);
                             }}
-                            passHref
                           >
-                            <a>{item.title}</a>
-                          </Link>
-                          <AiOutlineArrowRight size={"1.5rem"} />
-                        </li>
+                            <Link
+                              href={{
+                                pathname: "/category/[param]",
+                                query: { param: item.title },
+                              }}
+                            >
+                              {item.title}
+                            </Link>
+                            {item.subCategories ? (
+                              <BsChevronDown size={"1rem"} />
+                            ) : (
+                              <AiOutlineArrowRight size={"1.5rem"} />
+                            )}
+                          </li>
+                          <MobileSubMenu>
+                            {toggleMobileDropDown &&
+                              item.subCategories.map((sub) => {
+                                return <li>{sub.name}</li>;
+                              })}
+                          </MobileSubMenu>
+                        </>
                       );
                     })}
                   </MobileItems>
