@@ -8,7 +8,7 @@ const Content = styled.div({
   backgroundColor: theme.colors.primary,
   width: "100%",
   padding: "0px 1em 1.5em 1em",
-  borderBottom: `5px solid ${theme.colors.footer}`,
+  borderBottom: `5px solid ${theme.colors.accent}`,
   zIndex: 12,
   height: "fit-content",
 });
