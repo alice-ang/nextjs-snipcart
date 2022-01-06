@@ -161,7 +161,7 @@ export default function Header() {
             <Items>
               {staticMenuItems.map((item) => {
                 return (
-                  <li>
+                  <li key={item._id}>
                     <Link href={item.url} key={item.name}>
                       {item.name}
                     </Link>
