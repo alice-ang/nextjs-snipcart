@@ -58,7 +58,7 @@ export default function Product(props) {
           <SubTitle>{categories[0].title}</SubTitle>
           {colors &&
             Object.values(colors).map((color) => {
-              return <ColorCircle color={color} />;
+              return <ColorCircle color={color} key={color} />;
             })}
           <p>{description}</p>
           <Price>
