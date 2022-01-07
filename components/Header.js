@@ -6,27 +6,15 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { Breakpoints, theme } from "../styles/styles";
 import { useMenuItems } from "../hooks/useMenuItems";
-import { AiOutlineArrowRight } from "react-icons/ai";
 import { BsChevronDown } from "react-icons/bs";
 import { DropDownContent } from "./DropDownContent";
 import { Loader } from "./Loader";
 
-const HeaderWrapper = styled.header({
-  a: {
-    width: "100%",
-    textDecoration: "none",
-    color: theme.colors.dark,
-    textTransform: "capitalize",
-    "&:hover": {
-      textDecoration: "underline",
-    },
-  },
-});
+const HeaderWrapper = styled.header({});
 
 const StyledHeader = styled.div({
   display: "flex",
   paddingTop: 20,
-  paddingBottom: 20,
   alignItems: "center",
   justifyContent: "space-around",
   backgroundColor: theme.colors.primary,
@@ -43,6 +31,16 @@ const Items = styled.ul(() => ({
   padding: 0,
   li: {
     padding: "0px 1em",
+  },
+
+  a: {
+    width: "100%",
+    textDecoration: "none",
+    color: theme.colors.dark,
+    textTransform: "capitalize",
+    "&:hover": {
+      textDecoration: "underline",
+    },
   },
 }));
 
@@ -110,7 +108,7 @@ const MobileItems = styled.ul(() => ({
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
-    fontSize: "1.1rem",
+    fontSize: "1.2rem",
     padding: " 1em",
     fontWeight: "bold",
     borderBottom: `1px solid ${theme.colors.divider}`,
@@ -154,7 +152,7 @@ const MobileSubMenu = styled.ul({
 
 export default function Header() {
   const [toggle, setToggle] = useState(false);
-  const [toggleDropDown, setToggleDropDown] = useState(false);
+  const [toggleDropDown, setToggleDropDown] = useState(true);
   const [toggleMobileDropDown, setMobileToggleDropDown] = useState(false);
   const [subMenu, setSubMenu] = useState();
   const [mobileIndex, setMobileIndex] = useState(null);
@@ -244,7 +242,6 @@ export default function Header() {
                       return (
                         <li onClick={() => setToggle(!toggle)} key={item.name}>
                           <Link href={item.url}>{item.name}</Link>
-                          <AiOutlineArrowRight size={"1.5rem"} />
                         </li>
                       );
                     })}
@@ -266,10 +263,8 @@ export default function Header() {
                             >
                               {item.title}
                             </Link>
-                            {item.subCategories ? (
+                            {item.subCategories && (
                               <BsChevronDown size={"1rem"} />
-                            ) : (
-                              <AiOutlineArrowRight size={"1.5rem"} />
                             )}
                           </li>
                           {toggleMobileDropDown && mobileIndex === index ? (
@@ -305,7 +300,7 @@ export default function Header() {
           <Loader />
         )}
       </StyledHeader>
-      {toggleDropDown && (
+      {toggleDropDown && subMenu && (
         <DropDownContent>
           {subMenu.map((sub) => (
             <DropDownItem

@@ -11,6 +11,16 @@ const Content = styled.div({
   borderBottom: `5px solid ${theme.colors.accent}`,
   zIndex: 12,
   height: "fit-content",
+
+  a: {
+    width: "100%",
+    textDecoration: "none",
+    color: theme.colors.dark,
+    textTransform: "capitalize",
+    "&:hover": {
+      textDecoration: "underline",
+    },
+  },
 });
 
 export const DropDownContent = ({ children }) => {
