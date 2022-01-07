@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { useEffect, useState } from "react";
 import groq from "groq";
 import client from "../../client";
@@ -7,17 +6,8 @@ import { Card } from "../../components/Card";
 import { Grid } from "../../components/Grid";
 import { useRouter } from "next/router";
 
-const ProductPage = styled.article({
-  padding: "1em",
-});
-
-const CategoryTitle = styled.h1({
-  textTransform: "capitalize",
-});
-
 export default function Category() {
   const [productCategory, setProductCategory] = useState({});
-  const [isLoading, setLoading] = useState(false);
   const router = useRouter();
 
   const getByCategory = async (router) => {
@@ -30,9 +20,7 @@ export default function Category() {
 
     const result = await client
       .fetch(query, { cat })
-      .then(setLoading(true))
       .then((data) => setProductCategory(data))
-      .then(setLoading(false))
       .catch(console.error);
 
     return result;
@@ -47,7 +35,7 @@ export default function Category() {
   }
 
   return (
-    <ProductPage>
+    <article>
       {productCategory.products ? (
         <Grid title={productCategory.title}>
           {productCategory.products.map(
@@ -58,11 +46,13 @@ export default function Category() {
               images,
               price,
               currency,
+              colors,
               description,
             }) =>
               slug && (
                 <Card
                   key={_id}
+                  colors={colors}
                   subtitle={productCategory.title ?? productCategory.name}
                   itemName={title}
                   url={slug}
@@ -78,6 +68,6 @@ export default function Category() {
       ) : (
         <Loader />
       )}
-    </ProductPage>
+    </article>
   );
 }

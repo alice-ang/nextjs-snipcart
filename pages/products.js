@@ -38,6 +38,7 @@ export default function Products() {
               slug = "",
               images,
               price,
+              colors,
               categories = [],
               currency,
               description,
@@ -45,6 +46,7 @@ export default function Products() {
               slug && (
                 <Card
                   key={_id}
+                  colors={colors}
                   subtitle={categories[0].title}
                   itemName={title}
                   url={slug}
