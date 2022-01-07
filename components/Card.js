@@ -89,9 +89,9 @@ export const Card = ({
                 {colors &&
                   Object.values(colors).map((color, index) => {
                     if (index > 1) {
-                      return <p>{`+${numOfColors - 2}`}</p>;
+                      return <p key={index}>{`+${numOfColors - 2}`}</p>;
                     }
-                    return <ColorCircle color={color} />;
+                    return <ColorCircle color={color} key={color} />;
                   })}
               </ColorWrapper>
 
