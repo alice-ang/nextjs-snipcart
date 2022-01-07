@@ -15,7 +15,7 @@ const Content = styled.div({
   a: {
     width: "100%",
     textDecoration: "none",
-    color: theme.colors.dark,
+    color: theme.colors.textNeutral,
     textTransform: "capitalize",
     "&:hover": {
       textDecoration: "underline",

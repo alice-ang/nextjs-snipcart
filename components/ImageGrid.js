@@ -12,8 +12,9 @@ const ImageContainer = styled.div`
   display: grid;
   grid-gap: 0.3rem;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
   grid-template-areas:
+    "main main main"
     "main main main"
     "main main main"
     "first second third";
@@ -31,8 +32,8 @@ export const ImageGrid = ({ images }) => {
       <MainImage>
         <Image
           src={urlFor(mainUrl).url()}
-          width="1000"
-          height="800"
+          width="800"
+          height="1000"
           layout="intrinsic"
           objectFit="cover"
           alt="alt"

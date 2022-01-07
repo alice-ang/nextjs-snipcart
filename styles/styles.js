@@ -12,6 +12,7 @@ body,html {
 h1, h2, h3, h4 {
   font-family: 'Prata', serif;
 }
+
 `;
 
 export const theme = {
@@ -26,6 +27,7 @@ export const theme = {
     heart: "#f79",
     footer: "#a09891",
     text: "#a3a1a1",
+    textNeutral: "#6c6b6b",
     chat: "#0A7CFF",
   },
 };

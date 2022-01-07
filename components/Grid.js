@@ -4,9 +4,7 @@ import { Breakpoints, LayoutWidth, wrapperStyle } from "../styles/styles";
 const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
 
 const GridContainer = styled.div({
-  [Breakpoints.Medium]: {
-    padding: "1em",
-  },
+  padding: "1em",
 });
 
 const GridTitle = styled.h2({

@@ -114,6 +114,7 @@ const MobileItems = styled.ul(() => ({
     fontWeight: "bold",
     borderBottom: `1px solid ${theme.colors.divider}`,
     a: {
+      color: theme.colors.textNeutral,
       width: "100%",
       textDecoration: "none",
     },
