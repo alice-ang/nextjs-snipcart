@@ -4,7 +4,10 @@ import { Breakpoints, LayoutWidth, wrapperStyle } from "../styles/styles";
 const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
 
 const GridContainer = styled.div({
-  padding: "1em",
+  padding: "0.5em",
+  [Breakpoints.Large]: {
+    gridGap: "1em",
+  },
 });
 
 const GridTitle = styled.h2({
@@ -14,7 +17,7 @@ const GridTitle = styled.h2({
 const ProductGrid = styled.div({
   display: "grid",
   gridTemplateColumns: `repeat(auto-fit, minmax(120px, 1fr))`,
-  gridGap: "1em",
+  gridGap: "0.5em",
   margin: 0,
   borderRadius: 5,
   [Breakpoints.Large]: {
@@ -23,7 +26,6 @@ const ProductGrid = styled.div({
   },
   [Breakpoints.XL]: {
     gridTemplateColumns: `repeat(auto-fill, minmax(250px, 1fr))`,
-    gridGap: "1em",
   },
 });
 

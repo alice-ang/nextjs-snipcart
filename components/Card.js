@@ -1,11 +1,12 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
 import Link from "next/link";
 import { theme } from "../styles/styles";
 import { SubTitle } from "./SubTitle";
+import { ColorCircle } from "./ColorCircle";
 
 const CardContainer = styled.div({
   display: "inline-flex",
@@ -21,6 +22,20 @@ const CardContainer = styled.div({
   a: {
     textDecoration: "none",
     color: theme.colors.dark,
+  },
+});
+
+const ColorWrapper = styled.div({
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  justifyContent: "space-between",
+  h3: {
+    flexGrow: 2,
+  },
+  p: {
+    fontSize: "0.8em",
+    fontWeight: "bold",
   },
 });
 
@@ -45,11 +60,14 @@ export const Card = ({
   price,
   currency,
   url,
+  colors,
   images = [],
   itemName,
   subtitle,
 }) => {
   const [mainUrl, setMainUrl] = useState(images[0]);
+  const numOfColors = Object.values(colors).length;
+
   return (
     <CardContainer>
       <Link href={`/product/${encodeURIComponent(url.current)}`} passHref>
@@ -66,11 +84,20 @@ export const Card = ({
           />
           <CardContent>
             <ContentContainer>
-              <h3>{itemName}</h3>
+              <ColorWrapper>
+                <h3>{itemName}</h3>
+                {colors &&
+                  Object.values(colors).map((color, index) => {
+                    if (index > 1) {
+                      return <p>{`+${numOfColors - 2}`}</p>;
+                    }
+                    return <ColorCircle color={color} />;
+                  })}
+              </ColorWrapper>
+
               <SubTitle>{subtitle} </SubTitle>
               {price && formatCurrency(currency, "sv-SE").format(price)}
             </ContentContainer>
-            {/* <BuyButtonRound /> */}
           </CardContent>
         </a>
       </Link>

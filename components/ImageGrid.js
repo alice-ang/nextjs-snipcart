@@ -11,13 +11,12 @@ const MainImage = styled.div`
 const ImageContainer = styled.div`
   display: grid;
   grid-gap: 0.3rem;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(5, 1fr);
   grid-template-areas:
     "main main main"
     "main main main"
-    "main main main"
-    "first second third";
+    "main main main";
   cursor: pointer;
   ${Breakpoints.Large}: {
     grid-gap: 1rem;

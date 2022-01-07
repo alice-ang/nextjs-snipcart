@@ -46,11 +46,13 @@ export default function Category() {
               images,
               price,
               currency,
+              colors,
               description,
             }) =>
               slug && (
                 <Card
                   key={_id}
+                  colors={colors}
                   subtitle={productCategory.title ?? productCategory.name}
                   itemName={title}
                   url={slug}
