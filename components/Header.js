@@ -6,7 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
 import { Breakpoints, theme } from "../styles/styles";
 import { useMenuItems } from "../hooks/useMenuItems";
-import { BsChevronDown } from "react-icons/bs";
+import { BsChevronDown, BsChevronUp } from "react-icons/bs";
 import { DropDownContent } from "./DropDownContent";
 import { Loader } from "./Loader";
 
@@ -264,7 +264,9 @@ export default function Header() {
                             >
                               {item.title}
                             </Link>
-                            {item.subCategories && (
+                            {toggleMobileDropDown ? (
+                              <BsChevronUp size={"1rem"} />
+                            ) : (
                               <BsChevronDown size={"1rem"} />
                             )}
                           </li>
