@@ -12,13 +12,14 @@ import { Loader } from "./Loader";
 
 const HeaderWrapper = styled.header({});
 
-const StyledHeader = styled.div({
+const StyledHeader = styled.div(({ isToggled }) => ({
   display: "flex",
   paddingTop: 20,
+  paddingBottom: isToggled ? 0 : 20,
   alignItems: "center",
   justifyContent: "space-around",
   backgroundColor: theme.colors.primary,
-});
+}));
 
 const Items = styled.ul(() => ({
   display: "none",
@@ -161,7 +162,7 @@ export default function Header() {
 
   return (
     <HeaderWrapper onMouseLeave={() => setToggleDropDown(false)}>
-      <StyledHeader>
+      <StyledHeader isToggled={toggleDropDown}>
         {menuItems ? (
           <>
             <MenuButton size={24} onClick={() => setToggle(!toggle)} />
