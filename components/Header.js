@@ -265,7 +265,7 @@ export default function Header() {
                             >
                               {item.title}
                             </Link>
-                            {toggleMobileDropDown ? (
+                            {toggleMobileDropDown && mobileIndex == index ? (
                               <BsChevronUp size={"1rem"} />
                             ) : (
                               <BsChevronDown size={"1rem"} />
