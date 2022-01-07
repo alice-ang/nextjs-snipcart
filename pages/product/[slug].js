@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 import { SubTitle } from "../../components/SubTitle";
 import { ImageGrid } from "../../components/ImageGrid";
 import { Breakpoints, LayoutWidth, wrapperStyle } from "../../styles/styles";
+import { ColorCircle } from "../../components/ColorCircle";
 
 const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
 
@@ -41,6 +42,7 @@ export default function Product(props) {
     price,
     currency,
     description,
+    colors,
     categories = [],
     images = [],
   } = props;
@@ -54,6 +56,10 @@ export default function Product(props) {
         <ProductInformation>
           <h2>{title}</h2>
           <SubTitle>{categories[0].title}</SubTitle>
+          {colors &&
+            Object.values(colors).map((color) => {
+              return <ColorCircle color={color} />;
+            })}
           <p>{description}</p>
           <Price>
             {price && formatCurrency(currency, "sv-SE").format(price)}
