@@ -1,9 +1,8 @@
 import styled from "styled-components";
 import groq from "groq";
-import Image from "next/image";
 import client from "../../client";
 import { urlFor } from "../../utils";
-import { BuyButton } from "../../components/BuyButton";
+import { BuyButton } from "../../components/buttons/BuyButton";
 import { formatCurrency } from "../../utils";
 import { useRouter } from "next/router";
 import { SubTitle } from "../../components/SubTitle";

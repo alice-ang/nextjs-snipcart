@@ -35,7 +35,6 @@ export default function About() {
       .then(setLoading(false))
       .catch(console.error);
   }, []);
-
   return (
     <div>
       {isLoading && <Loader />}

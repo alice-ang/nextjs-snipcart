@@ -2,15 +2,16 @@ import { Breakpoints } from "../styles/styles";
 import styled from "styled-components";
 
 const Circle = styled.div(({ circleColor }) => ({
-  height: 8,
-  width: 8,
+  height: 11,
+  width: 11,
   display: "inline-block",
   borderRadius: "50%",
-  margin: "0px 3px",
+  marginRight: 3,
   backgroundColor: circleColor ? circleColor : "red",
   [Breakpoints.Medium]: {
-    height: 10,
-    width: 10,
+    height: 14,
+    width: 14,
+    marginRight: 2,
   },
 }));
 

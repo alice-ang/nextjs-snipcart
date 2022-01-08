@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { theme } from "../styles/styles";
+import { theme } from "../../styles/styles";
 
 const Buy = styled.button({
   background: theme.colors.dark,
