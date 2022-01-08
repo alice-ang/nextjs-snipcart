@@ -89,7 +89,7 @@ const HeaderTop = styled.div({
 });
 
 const CloseButton = styled(ImCross)({
-  padding: "0.5em",
+  padding: 20,
   fontSize: 36,
   color: theme.colors.dark,
 });

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { urlFor } from "../utils";
 import { formatCurrency } from "../utils";
 import Image from "next/image";
@@ -66,7 +66,7 @@ export const Card = ({
   subtitle,
 }) => {
   const [mainUrl, setMainUrl] = useState(images[0]);
-  const numOfColors = Object.values(colors).length;
+  const maxNumOfColors = 2;
 
   return (
     <CardContainer>
@@ -88,11 +88,12 @@ export const Card = ({
                 <h3>{itemName}</h3>
                 {colors &&
                   Object.values(colors).map((color, index) => {
-                    if (index > 1) {
-                      return <p key={index}>{`+${numOfColors - 2}`}</p>;
+                    if (index >= maxNumOfColors) {
+                      return null;
                     }
                     return <ColorCircle color={color} key={color} />;
                   })}
+                <p>{`+${Object.values(colors).length - 2}`}</p>
               </ColorWrapper>
 
               <SubTitle>{subtitle} </SubTitle>
