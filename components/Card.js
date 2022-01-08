@@ -28,12 +28,14 @@ const CardContainer = styled.div({
 const ColorWrapper = styled.div({
   display: "flex",
   alignItems: "center",
-  width: "100%",
+  flexWrap: "wrap",
   justifyContent: "space-between",
-  h3: {
+  width: "100%",
+  h4: {
     flexGrow: 2,
   },
   p: {
+    display: "inline-block",
     fontSize: "0.8em",
     fontWeight: "bold",
   },
@@ -67,6 +69,8 @@ export const Card = ({
 }) => {
   const [mainUrl, setMainUrl] = useState(images[0]);
   const maxNumOfColors = 2;
+  const remainingColors =
+    Object.values(colors).length > 2 ? Object.values(colors).length - 2 : null;
 
   return (
     <CardContainer>
@@ -85,17 +89,18 @@ export const Card = ({
           <CardContent>
             <ContentContainer>
               <ColorWrapper>
-                <h3>{itemName}</h3>
-                {colors &&
-                  Object.values(colors).map((color, index) => {
-                    if (index >= maxNumOfColors) {
-                      return null;
-                    }
-                    return <ColorCircle color={color} key={color} />;
-                  })}
-                <p>{`+${Object.values(colors).length - 2}`}</p>
+                <h4>{itemName}</h4>
+                <span>
+                  {colors &&
+                    Object.values(colors).map((color, index) => {
+                      if (index >= maxNumOfColors) {
+                        return null;
+                      }
+                      return <ColorCircle color={color} key={color} />;
+                    })}
+                  {remainingColors && <p>{`+${remainingColors}`}</p>}
+                </span>
               </ColorWrapper>
-
               <SubTitle>{subtitle} </SubTitle>
               {price && formatCurrency(currency, "sv-SE").format(price)}
             </ContentContainer>

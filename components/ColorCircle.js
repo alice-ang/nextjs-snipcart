@@ -6,7 +6,7 @@ const Circle = styled.div(({ circleColor }) => ({
   width: 11,
   display: "inline-block",
   borderRadius: "50%",
-  marginRight: 2,
+  marginRight: 3,
   backgroundColor: circleColor ? circleColor : "red",
   [Breakpoints.Medium]: {
     height: 14,
