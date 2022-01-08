@@ -5,11 +5,13 @@ import client from "../client";
 import { MessengerChat } from "react-messenger-chat-plugin";
 import { Loader } from "../components/Loader";
 import { TextBlock } from "../components/TextBlock";
+import { ContentBlock } from "../components/ContentBlock";
 import { theme } from "../styles/styles";
 
 export default function About() {
   const [hero, setHero] = useState(null);
   const [textBlock, setTextBlock] = useState(null);
+  const [contentBlock, setContentBlock] = useState(null);
   const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -29,18 +31,27 @@ export default function About() {
             case "textBlock":
               setTextBlock(page);
               break;
+            case "contentBlock":
+              setContentBlock(page);
+              break;
           }
         });
       })
       .then(setLoading(false))
       .catch(console.error);
   }, []);
-
   return (
     <div>
       {isLoading && <Loader />}
       {hero && <Hero image={hero.heroImage} />}
       {textBlock && <TextBlock color={theme.colors.accent} block={textBlock} />}
+      {contentBlock && (
+        <ContentBlock
+          image={contentBlock.image}
+          textBlock={contentBlock.textContent}
+          isTextAlignedLeft={contentBlock.isTextAlignedLeft}
+        />
+      )}
       <MessengerChat
         pageId="734860390568287"
         language="sv_SE"
