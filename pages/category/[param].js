@@ -37,7 +37,7 @@ export default function Category() {
   return (
     <article>
       {productCategory.products ? (
-        <Grid title={productCategory.title}>
+        <Grid title={productCategory.title ?? productCategory.name}>
           {productCategory.products.map(
             ({
               _id,

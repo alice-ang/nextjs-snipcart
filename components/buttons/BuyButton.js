@@ -5,6 +5,7 @@ const Buy = styled.button({
   background: theme.colors.dark,
   width: "100%",
   border: `4px solid ${theme.colors.dark}`,
+  fontWeight: "bold",
   color: "white",
   transition: "0.3s",
   padding: "0.5em",
