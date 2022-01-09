@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import { theme } from "../../styles/styles";
 
@@ -22,8 +23,19 @@ export const BuyButton = ({
   description,
   image,
   itemName,
+  variants = [],
   children,
 }) => {
+  const [colors, setColors] = useState("");
+  const variantArray = [];
+
+  useEffect(() => {
+    variants.map((variant) => {
+      variantArray.push(variant.title);
+      setColors(variantArray.join("|"));
+    });
+  }, [variants]);
+
   return (
     <Buy
       className="snipcart-add-item"
@@ -33,6 +45,9 @@ export const BuyButton = ({
       data-item-description={description}
       data-item-image={image}
       data-item-name={itemName}
+      data-item-custom1-name="Färg"
+      data-item-custom1-options={colors ?? null}
+      data-item-custom1-required="true"
     >
       {children}
     </Buy>

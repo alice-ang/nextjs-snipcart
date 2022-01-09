@@ -70,7 +70,7 @@ export default function Product(props) {
   } = props;
 
   const [variantUrl, setVariantUrl] = useState(null);
-  const [variantTitle, setVariantTitle] = useState("");
+  const [variantTitle, setVariantTitle] = useState(variants[0].title);
   const router = useRouter();
 
   return (
@@ -79,40 +79,44 @@ export default function Product(props) {
         {images && <ImageGrid images={images} variant={variantUrl} />}
         <ProductInformation>
           <h2>{title}</h2>
-          <SubTitle>{categories[0].title}</SubTitle>
-          {variantTitle && <p>{variantTitle}</p>}
-          {variants.map((variant) => {
-            return (
-              <span
-                key={variant.color}
-                onClick={() => {
-                  setVariantTitle(variant.title);
-                  setVariantUrl(variant.variantImage);
-                }}
-              >
-                <StyledColorCircle color={variant.color} />
-              </span>
-            );
-          })}
-          <VariantImages>
-            {variants.map((variant) => {
-              return (
-                <Image
-                  key={variant._id}
-                  src={urlFor(variant.variantImage).url()}
-                  width="100%"
-                  height="100%"
-                  layout="responsive"
-                  objectFit="cover"
-                  alt="alt"
-                  onClick={() => {
-                    setVariantUrl(variant.variantImage);
-                    setVariantTitle(variant.title);
-                  }}
-                />
-              );
-            })}
-          </VariantImages>
+          {variants && (
+            <>
+              <SubTitle>{categories[0].title}</SubTitle>
+              {variantTitle && <p>{variantTitle}</p>}
+              {variants.map((variant) => {
+                return (
+                  <span
+                    key={variant.color}
+                    onClick={() => {
+                      setVariantTitle(variant.title);
+                      setVariantUrl(variant.variantImage);
+                    }}
+                  >
+                    <StyledColorCircle color={variant.color} />
+                  </span>
+                );
+              })}
+              <VariantImages>
+                {variants.map((variant) => {
+                  return (
+                    <Image
+                      key={variant._id}
+                      src={urlFor(variant.variantImage).url()}
+                      width="100%"
+                      height="100%"
+                      layout="responsive"
+                      objectFit="cover"
+                      alt="alt"
+                      onClick={() => {
+                        setVariantUrl(variant.variantImage);
+                        setVariantTitle(variant.title);
+                      }}
+                    />
+                  );
+                })}
+              </VariantImages>
+            </>
+          )}
 
           <p>{description}</p>
           <Price>
@@ -122,6 +126,7 @@ export default function Product(props) {
             id={title}
             price={price}
             url={router.asPath}
+            variants={variants}
             description={description}
             image={urlFor(images[0]).url()}
             itemName={title}
