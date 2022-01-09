@@ -70,7 +70,9 @@ export const Card = ({
   const [mainUrl, setMainUrl] = useState(images[0]);
   const maxNumOfColors = 2;
   const remainingColors =
-    Object.values(colors).length > 2 ? Object.values(colors).length - 2 : null;
+    colors && Object.values(colors).length > 2
+      ? Object.values(colors).length - 2
+      : null;
 
   return (
     <CardContainer>

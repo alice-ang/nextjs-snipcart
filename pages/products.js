@@ -13,7 +13,7 @@ export default function Products() {
 
   useEffect(() => {
     const heroQuery = groq` *[_type == "hero" && name == 'Products' ][0]{
-      ..., "categories": categories[]->
+      ..., "categories": categories[]->{...}, "variants": variants[]->{...}
     }`;
     client
       .fetch(heroQuery)

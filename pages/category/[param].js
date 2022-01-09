@@ -33,7 +33,6 @@ export default function Category() {
   if (!productCategory) {
     return null;
   }
-
   return (
     <article>
       {productCategory.products ? (
