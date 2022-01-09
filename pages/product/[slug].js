@@ -9,7 +9,12 @@ import { formatCurrency } from "../../utils";
 import { useRouter } from "next/router";
 import { SubTitle } from "../../components/SubTitle";
 import { ImageGrid } from "../../components/ImageGrid";
-import { Breakpoints, LayoutWidth, wrapperStyle } from "../../styles/styles";
+import {
+  Breakpoints,
+  LayoutWidth,
+  wrapperStyle,
+  theme,
+} from "../../styles/styles";
 import { ColorCircle } from "../../components/ColorCircle";
 
 const Wrapper = styled.div(({ width }) => ({}, wrapperStyle({ width })));
@@ -39,7 +44,7 @@ const Price = styled.p({
 
 const VariantImages = styled.div({
   display: "grid",
-  gridTemplateColumns: `repeat(auto-fill, minmax(40px, 1fr))`,
+  gridTemplateColumns: `repeat(auto-fill, minmax(50px, 1fr))`,
   gridGap: 5,
   margin: 0,
   borderRadius: 5,
@@ -49,13 +54,22 @@ const VariantImages = styled.div({
   },
 });
 
+const VariantWrapper = styled.span(({ hasBorder }) => ({
+  borderBottom: hasBorder ? `3px solid ${theme.colors.footer}` : undefined,
+  paddingBottom: hasBorder ? 5 : undefined,
+}));
+
 const StyledColorCircle = styled(ColorCircle)({
   cursor: "pointer",
+  margin: 4,
   [Breakpoints.Large]: {
     height: 14,
     width: 14,
-    marginRight: 8,
   },
+});
+
+const VariantTitle = styled.p({
+  fontWeight: "bold",
 });
 
 export default function Product(props) {
@@ -70,7 +84,11 @@ export default function Product(props) {
   } = props;
 
   const [variantUrl, setVariantUrl] = useState(null);
-  const [variantTitle, setVariantTitle] = useState(variants[0].title);
+  const [variantTitle, setVariantTitle] = useState(
+    variants ? variants[0].title : null
+  );
+  const [activeIndex, setActiveIndex] = useState(0);
+
   const router = useRouter();
 
   return (
@@ -82,14 +100,15 @@ export default function Product(props) {
           {variants && (
             <>
               <SubTitle>{categories[0].title}</SubTitle>
-              {variantTitle && <p>{variantTitle}</p>}
-              {variants.map((variant) => {
+              {variantTitle && <VariantTitle>{variantTitle}</VariantTitle>}
+              {variants.map((variant, i) => {
                 return (
                   <span
                     key={variant.color}
                     onClick={() => {
                       setVariantTitle(variant.title);
                       setVariantUrl(variant.variantImage);
+                      setActiveIndex(i);
                     }}
                   >
                     <StyledColorCircle color={variant.color} />
@@ -97,21 +116,26 @@ export default function Product(props) {
                 );
               })}
               <VariantImages>
-                {variants.map((variant) => {
+                {variants.map((variant, index) => {
                   return (
-                    <Image
+                    <VariantWrapper
                       key={variant._id}
-                      src={urlFor(variant.variantImage).url()}
-                      width="100%"
-                      height="100%"
-                      layout="responsive"
-                      objectFit="cover"
-                      alt="alt"
-                      onClick={() => {
-                        setVariantUrl(variant.variantImage);
-                        setVariantTitle(variant.title);
-                      }}
-                    />
+                      hasBorder={index == activeIndex}
+                    >
+                      <Image
+                        src={urlFor(variant.variantImage).url()}
+                        width="100%"
+                        height="100%"
+                        layout="responsive"
+                        objectFit="cover"
+                        alt="alt"
+                        onClick={() => {
+                          setVariantUrl(variant.variantImage);
+                          setVariantTitle(variant.title);
+                          setActiveIndex(index);
+                        }}
+                      />
+                    </VariantWrapper>
                   );
                 })}
               </VariantImages>
