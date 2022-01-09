@@ -34,10 +34,11 @@ export default function Category() {
     return null;
   }
 
+  console.log(productCategory);
   return (
     <article>
       {productCategory.products ? (
-        <Grid title={productCategory.title}>
+        <Grid title={productCategory.title ?? productCategory.name}>
           {productCategory.products.map(
             ({
               _id,
@@ -46,13 +47,11 @@ export default function Category() {
               images,
               price,
               currency,
-              colors,
               description,
             }) =>
               slug && (
                 <Card
                   key={_id}
-                  colors={colors}
                   subtitle={productCategory.title ?? productCategory.name}
                   itemName={title}
                   url={slug}

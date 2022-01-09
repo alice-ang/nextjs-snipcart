@@ -7,7 +7,8 @@ export const useProducts = () => {
   useEffect(() => {
     const productsQuery = groq`*[_type == "product"]{
       ...,
-      categories[]->
+      categories[]->,
+      variants[]->
     }`;
     client
       .fetch(productsQuery)

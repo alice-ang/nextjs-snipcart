@@ -23,8 +23,14 @@ const ImageContainer = styled.div`
   }
 `;
 
-export const ImageGrid = ({ images }) => {
+export const ImageGrid = ({ images, variant }) => {
   const [mainUrl, setMainUrl] = useState(images[0]);
+
+  useEffect(() => {
+    if (variant !== null) {
+      setMainUrl(variant);
+    }
+  }, [variant]);
 
   return (
     <ImageContainer>
@@ -49,7 +55,9 @@ export const ImageGrid = ({ images }) => {
             layout="responsive"
             objectFit="cover"
             alt="alt"
-            onClick={() => setMainUrl(image)}
+            onClick={() => {
+              setMainUrl(image);
+            }}
           />
         );
       })}
