@@ -39,6 +39,7 @@ export default function Products() {
               images,
               price,
               colors,
+              variants = [],
               categories = [],
               currency,
               description,
@@ -50,6 +51,7 @@ export default function Products() {
                   subtitle={categories[0].title}
                   itemName={title}
                   url={slug}
+                  variants={variants}
                   images={images}
                   description={description}
                   id={slug}

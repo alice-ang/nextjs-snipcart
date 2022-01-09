@@ -62,7 +62,7 @@ export const Card = ({
   price,
   currency,
   url,
-  colors,
+  variants = [],
   images = [],
   itemName,
   subtitle,
@@ -70,9 +70,7 @@ export const Card = ({
   const [mainUrl, setMainUrl] = useState(images[0]);
   const maxNumOfColors = 2;
   const remainingColors =
-    colors && Object.values(colors).length > 2
-      ? Object.values(colors).length - 2
-      : null;
+    variants && variants.length > 2 ? variants.length - 2 : null;
 
   return (
     <CardContainer>
@@ -93,12 +91,14 @@ export const Card = ({
               <ColorWrapper>
                 <h4>{itemName}</h4>
                 <span>
-                  {colors &&
-                    Object.values(colors).map((color, index) => {
+                  {variants &&
+                    variants.map((variant, index) => {
                       if (index >= maxNumOfColors) {
                         return null;
                       }
-                      return <ColorCircle color={color} key={color} />;
+                      return (
+                        <ColorCircle color={variant.color} key={variant._id} />
+                      );
                     })}
                   {remainingColors && <p>{`+${remainingColors}`}</p>}
                 </span>

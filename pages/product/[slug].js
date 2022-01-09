@@ -47,6 +47,11 @@ const VariantImages = styled.div({
 
 const StyledColorCircle = styled(ColorCircle)({
   cursor: "pointer",
+  [Breakpoints.Medium]: {
+    height: 14,
+    width: 14,
+    marginRight: 2,
+  },
 });
 
 export default function Product(props) {
