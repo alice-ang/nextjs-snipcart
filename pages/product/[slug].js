@@ -70,7 +70,7 @@ export default function Product(props) {
   } = props;
 
   const [variantUrl, setVariantUrl] = useState(null);
-  const [variantTitle, setVariantTitle] = useState(null);
+  const [variantTitle, setVariantTitle] = useState("");
   const router = useRouter();
 
   return (
@@ -83,7 +83,15 @@ export default function Product(props) {
           {variantTitle && <p>{variantTitle}</p>}
           {variants.map((variant) => {
             return (
-              <StyledColorCircle color={variant.color} key={variant.color} />
+              <span
+                key={variant.color}
+                onClick={() => {
+                  setVariantTitle(variant.title);
+                  setVariantUrl(variant.variantImage);
+                }}
+              >
+                <StyledColorCircle color={variant.color} />
+              </span>
             );
           })}
           <VariantImages>
@@ -97,7 +105,10 @@ export default function Product(props) {
                   layout="responsive"
                   objectFit="cover"
                   alt="alt"
-                  onClick={() => setVariantUrl(variant.variantImage)}
+                  onClick={() => {
+                    setVariantUrl(variant.variantImage);
+                    setVariantTitle(variant.title);
+                  }}
                 />
               );
             })}
