@@ -6,15 +6,15 @@ const Circle = styled.div(({ circleColor }) => ({
   width: 11,
   display: "inline-block",
   borderRadius: "50%",
-  marginRight: 3,
+  marginRight: 4,
   backgroundColor: circleColor ? circleColor : "red",
   [Breakpoints.Medium]: {
     height: 14,
     width: 14,
-    marginRight: 2,
+    marginRight: 6,
   },
 }));
 
-export const ColorCircle = ({ color }) => {
-  return <Circle circleColor={color} />;
+export const ColorCircle = ({ color, className }) => {
+  return <Circle circleColor={color} className={className} />;
 };

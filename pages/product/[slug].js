@@ -39,18 +39,22 @@ const Price = styled.p({
 
 const VariantImages = styled.div({
   display: "grid",
-  gridTemplateColumns: `repeat(auto-fit, minmax(50px, 1fr))`,
+  gridTemplateColumns: `repeat(auto-fill, minmax(40px, 1fr))`,
   gridGap: 5,
   margin: 0,
   borderRadius: 5,
+  cursor: "pointer",
+  [Breakpoints.Large]: {
+    gridTemplateColumns: `repeat(auto-fill, minmax(70px, 1fr))`,
+  },
 });
 
 const StyledColorCircle = styled(ColorCircle)({
   cursor: "pointer",
-  [Breakpoints.Medium]: {
+  [Breakpoints.Large]: {
     height: 14,
     width: 14,
-    marginRight: 2,
+    marginRight: 8,
   },
 });
 
@@ -79,11 +83,7 @@ export default function Product(props) {
           {variantTitle && <p>{variantTitle}</p>}
           {variants.map((variant) => {
             return (
-              <StyledColorCircle
-                color={variant.color}
-                key={variant.color}
-                onClick={() => console.log(variant.name)}
-              />
+              <StyledColorCircle color={variant.color} key={variant.color} />
             );
           })}
           <VariantImages>
