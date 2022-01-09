@@ -23,26 +23,22 @@ export const BuyButton = ({
   description,
   image,
   itemName,
-  variants = [],
+  variant,
   children,
 }) => {
-  const [colors, setColors] = useState("");
-  const variantArray = [];
+  const [color, setColor] = useState("");
 
   useEffect(() => {
-    if (!variants) {
+    if (!variant) {
       return null;
     }
 
-    variants.map((variant) => {
-      variantArray.push(variant.title);
-      setColors(variantArray.join("|"));
-    });
-  }, [variants]);
+    setColor(variant);
+  }, [variant]);
 
   return (
     <>
-      {colors ? (
+      {color ? (
         <Buy
           className="snipcart-add-item"
           data-item-id={id}
@@ -52,8 +48,7 @@ export const BuyButton = ({
           data-item-image={image}
           data-item-name={itemName}
           data-item-custom1-name="Färg"
-          data-item-custom1-options={colors}
-          data-item-custom1-required="true"
+          data-item-custom1-options={variant}
         >
           {children}
         </Buy>

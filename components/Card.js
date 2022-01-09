@@ -77,7 +77,7 @@ export const Card = ({
       <Link href={`/product/${encodeURIComponent(url.current)}`} passHref>
         <a>
           <CardImage
-            onMouseEnter={() => setMainUrl(images[1])}
+            onMouseEnter={() => (images[1] ? setMainUrl(images[1]) : null)}
             onMouseLeave={() => setMainUrl(images[0])}
             src={urlFor(mainUrl).url()}
             width="100%"

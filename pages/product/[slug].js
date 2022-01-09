@@ -150,6 +150,7 @@ export default function Product(props) {
             id={title}
             price={price}
             url={router.asPath}
+            variant={variantTitle}
             variants={variants}
             description={description}
             image={urlFor(images[0]).url()}
