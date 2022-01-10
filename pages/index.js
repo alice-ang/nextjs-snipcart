@@ -61,15 +61,15 @@ export default function Home() {
               slug = "",
               images,
               categories = [],
+              variants = [],
               price,
-              colors,
               currency,
               description,
             }) =>
               slug && (
                 <Card
                   key={_id}
-                  colors={colors}
+                  variants={variants}
                   subtitle={categories[0].title}
                   itemName={title}
                   url={slug}
