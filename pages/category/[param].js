@@ -14,7 +14,10 @@ export default function Category() {
     const cat = router.query.param;
     const query = groq`*[_type=="category" && title == $cat || _type=="subCategory" && name == $cat ][0]{
       ...,
-      "products": *[ _type == "product" && references(^._id) ]
+      "products": *[ _type == "product" && references(^._id) ]{
+        ...,
+        variants[]->
+      }
 
     }`;
 
@@ -45,6 +48,7 @@ export default function Category() {
               title = "",
               slug = "",
               images,
+              variants = [],
               price,
               currency,
               description,
@@ -52,6 +56,7 @@ export default function Category() {
               slug && (
                 <Card
                   key={_id}
+                  variants={variants}
                   subtitle={productCategory.title ?? productCategory.name}
                   itemName={title}
                   url={slug}
