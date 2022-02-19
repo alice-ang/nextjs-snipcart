@@ -58,6 +58,10 @@ const ContentContainer = styled.div({
   flexGrow: 2,
 });
 
+const CardTitle = styled.h4({
+  paddingRight: "0.2em",
+});
+
 export const Card = ({
   price,
   currency,
@@ -89,7 +93,7 @@ export const Card = ({
           <CardContent>
             <ContentContainer>
               <ColorWrapper>
-                <h4>{itemName}</h4>
+                <CardTitle>{itemName}</CardTitle>
                 <span>
                   {variants &&
                     variants.map((variant, index) => {

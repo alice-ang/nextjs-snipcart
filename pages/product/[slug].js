@@ -56,7 +56,8 @@ const VariantImages = styled.div({
 
 const VariantWrapper = styled.span(({ isClicked }) => ({
   img: {
-    borderRadius: isClicked ? "50%" : undefined,
+    transition: "0.2s",
+    borderRadius: isClicked ? "50%" : 3,
     objectFit: "center",
   },
 }));
