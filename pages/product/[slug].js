@@ -54,9 +54,11 @@ const VariantImages = styled.div({
   },
 });
 
-const VariantWrapper = styled.span(({ hasBorder }) => ({
-  borderBottom: hasBorder ? `3px solid ${theme.colors.footer}` : undefined,
-  paddingBottom: hasBorder ? 5 : undefined,
+const VariantWrapper = styled.span(({ isClicked }) => ({
+  img: {
+    borderRadius: isClicked ? "50%" : undefined,
+    objectFit: "center",
+  },
 }));
 
 const StyledColorCircle = styled(ColorCircle)({
@@ -120,7 +122,7 @@ export default function Product(props) {
                   return (
                     <VariantWrapper
                       key={variant._id}
-                      hasBorder={index == activeIndex}
+                      isClicked={index == activeIndex}
                     >
                       <Image
                         src={urlFor(variant.variantImage).url()}

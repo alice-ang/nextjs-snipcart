@@ -37,7 +37,6 @@ export default function Category() {
     return null;
   }
 
-  console.log(productCategory);
   return (
     <article>
       {productCategory.products ? (
